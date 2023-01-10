@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.css';
 
 function App() {
   const todoList = [{index: 1, title: 'Submit Assignement'},{index: 2, title: 'Watch video'},{index: 3, title: 'Read lesson'}];
