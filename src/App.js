@@ -3,7 +3,7 @@ import './App.css';
 
 
 
-const todoList =[{'id': 1. , 'tittle': 'Grocery shopping'}, {'id': 2. , 'tittle':'pack boxes'}, {'id':3. , 'tittle':'buy headphones'}];
+const todoList =[{'id': 1, 'tittle': 'Grocery shopping'}, {'id': 2, 'tittle':'pack boxes'}, {'id':3, 'tittle':'buy headphones'}];
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
     <ul>
       {todoList.map((el)=>{
        return (
-        <li>
-          {`${el.id} ${el.tittle}`}
+        <li key={el.id}>
+          {el.tittle}
           </li>
        )
       })}
