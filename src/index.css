@@ -4,3 +4,22 @@ header{
     padding: 10px;
     text-align: center;
 }
+
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+}
+
+li{
+    display: flex;
+    text-align: start;
+    flex-direction: column;
+    font-size: x-large;
+    font-weight: 600;
+    margin: 0 10px;
+}
+li:hover{
+    background: #000;
+    color: #fff;
+}
