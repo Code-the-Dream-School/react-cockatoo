@@ -1,18 +1,17 @@
 import React from 'react';
+import AddTodoForm from './AddTodoForm';
+import TodoList from './TodoList';
 import './index.css';
 
 function App() {
-  const todoList = [{index: 1, title: 'Submit Assignement'},{index: 2, title: 'Watch video'},{index: 3, title: 'Read lesson'}];
     return (
     <div style={{ textAlign: 'center' }}>
       <header>
        <h1>Todo List</h1>
       </header>
-      <ul>
-        {todoList.map((todo) => (
-          <li key={todo.index}>{todo.title}</li>
-        ))}
-      </ul>
+      <AddTodoForm />
+      <TodoList />
+     
     </div>
   );
 }
