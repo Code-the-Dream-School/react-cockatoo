@@ -20,7 +20,7 @@ function App() {
   return (
     <div>
       <h1>To-Do List:</h1>
-      <ul>{todoList.map(todo => <li key = {todo.id}>{todo.title}</li>)}</ul>
+      <ul>{todoList.map(list => <li key = {list.id}>{list.title}</li>)}</ul>
     </div>
   );
 }
