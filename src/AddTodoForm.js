@@ -1,13 +1,14 @@
 import React, { useState } from 'react'; 
 
 function AddTodoForm({ onAddTodo }) {
-    const [todoTitle, setTodoTitle] = useState('');
+  const [todoTitle, setTodoTitle] = useState('');
 
-  function handleTitleChange(event){
+  const handleTitleChange = (event) => {
     const newTodoTitle = event.target.value;
     setTodoTitle(newTodoTitle);
   }
-  function handleAddTodo(event){
+
+  const handleAddTodo = (event) => {
     event.preventDefault();
     onAddTodo(
       {
@@ -15,7 +16,6 @@ function AddTodoForm({ onAddTodo }) {
         id: Date.now()
       }
     )
-
     setTodoTitle("");
   }
   return (
