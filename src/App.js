@@ -1,19 +1,13 @@
 import React from "react"
+import TodoList from "./TodoList"
+import AddTodoForm from "./AddTodoForm"
 
-var todoList = [
-  { id: 1, title: "Setup the project workspace" },
-  { id: 2, title: "Complete the Lesson 1.1" },
-  { id: 1, title: "Submit the assignment" },
-]
 function App() {
   return (
     <>
       <h1>Todo List</h1>
-      <ul>
-        {todoList.map((x) => (
-          <li key={x.id}>{x.title}</li>
-        ))}
-      </ul>
+      <AddTodoForm />
+      <TodoList />
     </>
   )
 }
