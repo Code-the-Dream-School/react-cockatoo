@@ -8,7 +8,6 @@ const App = () => {
     <div>
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo = {setNewTodo} />
-      <AddTodoForm />
       <p>{newTodo}</p>
       <TodoList />
     </div>
