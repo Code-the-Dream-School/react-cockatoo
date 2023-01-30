@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const useSemiPersistentState = () => {
-	const [todoList, setTodoList] = useState(
-		JSON.parse(localStorage.getItem("savedTodoList")) || []
-)}
+const airtableName = "Todos";
+const airtableView = "?view=Grid%20view";
+const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${airtableName}/`;
 
 function App() {
 	const [todoList, setTodoList] = useState([]);
-	const [isLoading, setIsLoading] = useState(true);
+	const [formattedTodos, setFormattedTodos] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
 
-	useEffect(() => {
-		const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`;
+	function getTodos() {
 		try {
-			fetch(url, {
+			fetch(url + airtableView, {
 				headers: {
 					Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
 				},
@@ -23,114 +23,97 @@ function App() {
 				.then((result) => setTodoList(result.records));
 			setIsLoading(false);
 		} catch (error) {
+			setIsLoading(false);
 			console.log(error.message);
 		}
+	}
+
+	useEffect(() => {
+		setIsLoading(true);
+		getTodos();
 	}, []);
 
-	const addTodo = (newTodo) => {
-		setTodoList([...todoList, newTodo]);
-	};
-
-	const removeTodo = (id) => {
-		const updatedTodos = todoList.filter((todo) => todo.id !== id);
-		setTodoList(updatedTodos);
-	};
-
 	useEffect(() => {
-		if (!isLoading) {
-			localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-		}
-	}, [todoList, isLoading]);
+		const formattedTodoList = todoList.map((item) => {
+			if (item.createdTime === undefined) {
+				return null;
+			} else {
+				const currentDate = item.createdTime.split("T");
+				const todo = {
+					title: item.fields.Title,
+					id: item.id,
+					date: currentDate[0],
+					time: currentDate[1],
+				};
+				return todo;
+			}
+		});
+		setFormattedTodos(formattedTodoList);
+	}, [todoList]);
+
+	const addTodo = async (inputTodo) => {
+		let updatedTodos = [
+			{
+				id: Date.now(),
+				fields: {
+					Title: inputTodo,
+				},
+			},
+			...formattedTodos,
+		];
+		setFormattedTodos(updatedTodos);
+		await fetch(url, {
+			method: "POST",
+			body: JSON.stringify({
+				records: [
+					{
+						fields: {
+							Title: inputTodo,
+						},
+					},
+				],
+			}),
+			headers: {
+				Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+				"Content-Type": "application/json",
+			},
+		});
+		getTodos();
+	};
+
+	const removeTodo = async (id) => {
+		await fetch(url + id, {
+			method: "DELETE",
+			headers: {
+				Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+				"Content-Type": "application/json",
+			},
+		});
+		let updatedTodos = todoList.filter((todo) => id !== todo.id);
+		setFormattedTodos(updatedTodos);
+		getTodos();
+	};
 
 	return (
-		<>
-			<h1>Todo List</h1>
-			<AddTodoForm onAddTodo={addTodo} />
-			{isLoading ? (
-				<p>Loading...</p>
-			) : (
-				<TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-			)}
-		</>
->>>>>>> parent of 000921c (Merge branch 'main' into lesson-1-8)
+		<BrowserRouter>
+			<>
+				<h1>Todo List</h1>
+				<AddTodoForm onAddTodo={addTodo} todoList={todoList} />
+				{isLoading ? (
+					<p>Loading...</p>
+				) : (
+					<Routes>
+						<Route
+							exact
+							path="/"
+							element={
+								<TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+							}
+						/>
+					</Routes>
+				)}
+			</>
+		</BrowserRouter>
 	);
-
-	useEffect(() => {
-		localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-	}, [todoList]);
-
-	return [todoList, setTodoList];
-};
-
-const useSemiPersistentState = () => {
-	const [todoList, setTodoList] = useState(
-		JSON.parse(localStorage.getItem("savedTodoList")) || []
-	);
-
-	useEffect(() => {
-		localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-	}, [todoList]);
-
-	return [todoList, setTodoList];
-};
-
-const addTodo = (newTodo) => {
-	setTodoList([...todoList, newTodo]);
-};
-
-const removeTodo = (id) => {
-	const updatedTodos = todoList.filter((todo) => todo.id !== id);
-	setTodoList(updatedTodos);
-};
-
-return (
-	<>
-		<h1>Todo List</h1>
-		<AddTodoForm onAddTodo={addTodo} />
-		<TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-	</>
-);
-
-useEffect(() => {
-	new Promise((resolve, reject) =>
-		setTimeout(() => {
-			resolve({
-				data: {
-					todoList: JSON.parse(localStorage.getItem("savedTodoList")) || [],
-				},
-			});
-		}, 2000)
-	).then((result) => {
-		setTodoList([...result.data.todoList]);
-		setIsLoading(false);
-	});
-}, []);
-
-const addTodo = (newTodo) => {
-	setTodoList([...todoList, newTodo]);
-};
-
-const removeTodo = (id) => {
-	const updatedTodos = todoList.filter((todo) => todo.id !== id);
-	setTodoList(updatedTodos);
-};
-
-useEffect(() => {
-	if (!isLoading) {
-		localStorage.setItem("savedTodoList", JSON.stringify(todoList));
-	}
-}, [todoList]);
-
-return (
-	<>
-		<h1>Todo List</h1>
-		<AddTodoForm onAddTodo={addTodo} />
-		{isLoading ? (
-			<p>Loading...</p>
-		) : (
-			<TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-		)}
-	</>
-);
-
+}
 export default App;
