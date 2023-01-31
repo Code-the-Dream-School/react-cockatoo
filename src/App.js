@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const airtableName = "Todos";
 const airtableView = "?view=Grid%20view";
@@ -24,7 +26,7 @@ function App() {
 			setIsLoading(false);
 		} catch (error) {
 			setIsLoading(false);
-			console.log(error.message);
+			console.log("ERROR:", error);
 		}
 	}
 
@@ -94,10 +96,27 @@ function App() {
 		getTodos();
 	};
 
+	const notify = () => {
+		toast.error("Errr, something isn't right here. Please reload page.");
+	};
+
 	return (
 		<BrowserRouter>
 			<>
+				<button onClick={notify}>CLICK</button>
 				<h1>Todo List</h1>
+				<ToastContainer
+					position="top-center"
+					autoClose={5000}
+					hideProgressBar={true}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+					theme="dark"
+				/>
 				<AddTodoForm onAddTodo={addTodo} todoList={todoList} />
 				{isLoading ? (
 					<p>Loading...</p>
