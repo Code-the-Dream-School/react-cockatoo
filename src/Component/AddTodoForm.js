@@ -4,7 +4,6 @@ function AddTodoForm(props) {
   const hundleAddTodo = (e) => {
     e.preventDefault();
     const todoTitle = e.target.title.value;
-    console.log(todoTitle);
     props.onAddTodo(todoTitle);
     e.target.title.value = "";
   };
