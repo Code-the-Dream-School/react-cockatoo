@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-
-
-
-const todoList =[{id: 1, tittle: 'Grocery shopping'}, {id: 2, tittle:'pack boxes'}, {id:3, tittle:'buy headphones'}];
+import "./App.css";
+import TodoList from "./TodoList";
+import AddTodoForm from "./AddTodoForm";
+import { useState } from "react";
 
 function App() {
+  const [newTodo, setNewTodo] = useState("");
+
   return (
     <div>
-    <h1>TO-DO List</h1>
-    <ul>
-      {todoList.map((el)=>{
-       return (
-        <li key={el.id}>
-          {el.tittle}
-          </li>
-       )
-      })}
-    </ul>
+      <h1>TO-DO List</h1>
+      <AddTodoForm onAddTodo={setNewTodo} />
+      <p>{newTodo}</p>
+      <TodoList />
     </div>
   );
 }
