@@ -18,13 +18,13 @@ const todoList = [
 
 function TodoList (){
     return (
-
+      <div>
         <ul>
         {todoList.map((todo) => (
             <TodoListItem key = {todo.id} todo = {todo}/>
             ))}
         </ul>
-
+        </div>
     );
 }
 

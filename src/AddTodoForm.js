@@ -3,7 +3,7 @@ import React from 'react';
 function AddTodoForm (props) {
     function handleTodoForm (event){
         event.preventDefault();
-        let todoTitle = event.target.title.value;
+        let todoTitle = event.target[0].value;
         console.log(todoTitle);
         props.onAddTodo(todoTitle);
         event.target.reset();
