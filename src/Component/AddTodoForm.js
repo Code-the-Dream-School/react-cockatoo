@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 function AddTodoForm(props) {
-  const [todoTitle, setTodoTitle] = useState(""); // [todos, setTodos
-  const { onAddTodo } = props;
+  const { onAddTodo, todoTitle, setTodoTitle } = props;
   const handleTitleChange = (e) => {
     const newTodoTiltle = e.target.value;
     setTodoTitle(newTodoTiltle);
