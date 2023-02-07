@@ -9,3 +9,6 @@ The **SECOND** will be a **TO-DO LIST APP** that you will build as extra coding 
 
 **[Click here](https://github.com/Code-the-Dream-School/react/wiki) to redirect to the Wiki for this repository.  
 Read the Project Setup section and then follow the link to the General Instructions to get started.**
+
+
+bieng curious means having a desire to learn more about something or someone, and to ask questions about it or them, and to be open to new ideas and new ways of thinking about things,
