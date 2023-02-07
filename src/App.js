@@ -1,16 +1,18 @@
 import React from 'react';
+import './index.css';
 
 function App() {
-  return (
+  const todoList = [{id: 1, title: 'Submit Assignement'},{id: 2, title: 'Watch video'},{id: 3, title: 'Read lesson'}];
+    return (
     <div style={{ textAlign: 'center' }}>
       <header>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
+       <h1>Todo List</h1>
       </header>
+      <ul>
+        {todoList.map((todo) => (
+          <li key={todo.id}>{todo.title}</li>
+        ))}
+      </ul>
     </div>
   );
 }
