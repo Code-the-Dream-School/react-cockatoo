@@ -18,7 +18,7 @@ function App() {
       <AddTodoForm 
         todoTitle={todoTitle}
         setTodoTitle={setTodoTitle}
-       onAddTodo={addTodo} />
+        onAddTodo={addTodo} />
       <TodoList todos={todoList} />
     </div>
   );
