@@ -5,6 +5,7 @@ import "./index.css";
 
 function App() {
   const [todoList, setTodoList] = useState([]); // [todos, setTodos
+  const [todoTitle, setTodoTitle] = useState(""); // pass to AddTodoForm
 
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
@@ -14,7 +15,10 @@ function App() {
       <header>
         <h1>Todo List</h1>
       </header>
-      <AddTodoForm onAddTodo={addTodo} />
+      <AddTodoForm 
+        todoTitle={todoTitle}
+        setTodoTitle={setTodoTitle}
+       onAddTodo={addTodo} />
       <TodoList todos={todoList} />
     </div>
   );
