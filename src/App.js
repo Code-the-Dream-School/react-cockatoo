@@ -15,13 +15,6 @@ function App() {
         <h1>Todo List</h1>
       </header>
       <AddTodoForm onAddTodo={addTodo} />
-      <p
-        style={{
-          fontSize: "26px",
-          fontWeight: "700",
-          color: "rgb(0, 131, 17)",
-        }}
-      ></p>
       <TodoList todos={todoList} />
     </div>
   );
