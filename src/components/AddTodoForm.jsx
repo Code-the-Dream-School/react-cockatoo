@@ -3,7 +3,7 @@ import InputWithLabel from './InputWithLabel';
 import Button from './Button';
 import { MdAdd } from 'react-icons/md';
 
-function AddTodoForm({ onAddTodo, todoListName }) {
+function AddTodoForm({ todoListName, numberTodos, onAddTodo }) {
 	const [todoTitle, setTodoTitle] = useState('');
 
 	const handleTitleChange = (event) => {
@@ -20,7 +20,9 @@ function AddTodoForm({ onAddTodo, todoListName }) {
 
 	return (
 		<>
-			<h1>{todoListName}</h1>
+			<h1>
+				{numberTodos} . {todoListName}
+			</h1>
 			<form onSubmit={handleAddTodo}>
 				<InputWithLabel
 					todoTitle={todoTitle}

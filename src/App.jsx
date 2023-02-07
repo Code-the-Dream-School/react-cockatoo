@@ -3,7 +3,6 @@ import AddTodoForm from './components/AddTodoForm';
 import TodoList from './components/TodoList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const airtableName = 'Todos';
 const airtableView = '?view=Grid%20view';
@@ -28,6 +27,7 @@ function App() {
 				id: item.id,
 				date: currentDate[0],
 				time: currentDate[1].split('.')[0],
+				completed: item.fields.Completed || false,
 			};
 
 			return todo;
@@ -69,6 +69,7 @@ function App() {
 				id: Date.now(),
 				fields: {
 					Title: inputTodo,
+					Completed: false,
 				},
 			},
 			...todoList,
@@ -78,21 +79,56 @@ function App() {
 
 		await fetch(url, {
 			method: 'POST',
+			headers: {
+				Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+				'Content-Type': 'application/json',
+			},
 			body: JSON.stringify({
 				records: [
 					{
 						fields: {
 							Title: inputTodo,
+							Completed: false,
 						},
 					},
 				],
 			}),
+		});
+		loadTodos();
+	};
+
+	// UPDATE TODO
+	const updateTodo = async (inputTodo, completedTodoID, isCompleted) => {
+		let updatedTodos = todoList.map((todo) => {
+			if (todo.id === completedTodoID) {
+				todo.completed = isCompleted;
+				// console.log(
+				// 	`todoID: ${todo.id}, completedTodoID: ${completedTodoID}, inputTodo: ${inputTodo}, todo.Completed: ${todo.completed} `
+				// );
+			}
+			return todo;
+		});
+
+		setTodoList(updatedTodos);
+
+		await fetch(url + completedTodoID, {
+			method: 'PATCH',
 			headers: {
 				Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
 				'Content-Type': 'application/json',
 			},
+			body: JSON.stringify({
+				records: [
+					{
+						id: completedTodoID,
+						fields: {
+							Title: inputTodo,
+							Completed: isCompleted,
+						},
+					},
+				],
+			}),
 		});
-
 		loadTodos();
 	};
 
@@ -134,14 +170,18 @@ function App() {
 							element={
 								<>
 									<AddTodoForm
-										onAddTodo={addTodo}
-										todoList={todoList}
 										todoListName={'TODOS'}
+										numberTodos={todoList.length}
+										onAddTodo={addTodo}
 									/>
 									{isLoading ? (
 										<p>Loading...</p>
 									) : (
-										<TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+										<TodoList
+											todoList={todoList}
+											onUpdateTodo={updateTodo}
+											onRemoveTodo={removeTodo}
+										/>
 									)}
 								</>
 							}
@@ -153,8 +193,12 @@ function App() {
 							element={
 								<>
 									<h1>New Todo List</h1>
-									<AddTodoForm onAddTodo={addTodo} todoList={todoList} />
-									<TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+									<AddTodoForm onAddTodo={addTodo} />
+									<TodoList
+										todoList={todoList}
+										onUpdateTodo={updateTodo}
+										onRemoveTodo={removeTodo}
+									/>
 								</>
 							}
 						/>
