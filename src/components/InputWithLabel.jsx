@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
+import { TextField } from '@mui/material';
 
 function InputWithLabel(props) {
 	const { todoTitle, handleTitleChange, children } = props;
@@ -10,13 +11,17 @@ function InputWithLabel(props) {
 
 	return (
 		<>
-			<label htmlFor="todoTitle">{children}: </label>
-			<input
-				type="text"
-				name="title"
+			<TextField
+				type='text'
+				name='title'
+				id='outlined-basic'
+				label={children}
+				variant='filled'
 				value={todoTitle}
 				onChange={handleTitleChange}
 				ref={inputRef}
+				size='small'
+				multiline
 			/>
 		</>
 	);

@@ -1,6 +1,82 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Bungee+Inline&display=swap');
+
+body {
+  display: flex;
+  justify-content: center;
+  margin-top: 12vh;
+  font-family: 'Raleway', sans-serif;
+  color: #2b2c3a;
+  background-color: rgb(251, 251, 251);
+;
+}
+
+.wrapper {
+  animation: scroll 70s linear infinite;
+  background: url("/src/assets/steve-johnson-YS0YJLU_h2k-unsplash.jpg"), #fff;
+  width: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+  border-radius: 50px;
+  border: 0px;
+}
+
+@keyframes scroll {
+   100%{
+    background-position:0px -3000px;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .wrapper {
+    animation: scroll 200s linear infinite;
+  }
+}
+
+/* ELEMENTS (ALPHA SORT) */
 button {
-  margin-left: 5px;
+  margin-left: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+ font-family: 'Bungee Inline', cursive;
+ color: #10465b;
+ text-align: center;
+}
+input, textarea {
+  margin-bottom: 20px;
+  background-color:  rgb(247, 247, 247);
 }
 li {
-  padding-bottom: 5px;
+  font-family: 'Balsamiq Sans', sans-serif;
+  padding-bottom: 10px;
+}
+
+/* CLASSES (ALPHA SORT)*/
+.AppContainer {
+  background-color: rgba(241, 245, 251, .9);
+  z-index:99;
+  padding: 50px 40px;
+  border-radius: 50px;
+  width: 70vw;
+  max-width: 500px;
+}
+.btn-add {
+  color: rgb(250, 250, 250);
+  font-size: 2.5em;
+}
+.btn-close {
+  vertical-align: bottom;
+  margin-left: 10px;
 }
