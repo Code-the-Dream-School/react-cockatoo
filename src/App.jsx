@@ -64,79 +64,82 @@ function App() {
 
 	// ADD TODO
 	const addTodo = async (inputTodo) => {
-		let updatedTodos = [
-			{
-				id: Date.now(),
-				fields: {
-					Title: inputTodo,
-					Completed: false,
-				},
-			},
-			...todoList,
-		];
-
-		setTodoList(updatedTodos);
-
-		await fetch(url, {
-			method: 'POST',
-			headers: {
-				Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				records: [
-					{
-						fields: {
-							Title: inputTodo,
-							Completed: false,
-						},
+		try {
+			let updatedTodos = [
+				{
+					id: Date.now(),
+					fields: {
+						Title: inputTodo,
+						Completed: false,
 					},
-				],
-			}),
-		});
-		loadTodos();
+				},
+				...todoList,
+			];
+
+			setTodoList(updatedTodos);
+
+			await fetch(url, {
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					records: [
+						{
+							fields: {
+								Title: inputTodo,
+								Completed: false,
+							},
+						},
+					],
+				}),
+			});
+			loadTodos();
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	// UPDATE TODO
 	const updateTodo = async (todoTitle, completedTodoID, isCompleted) => {
-		// console.log(
-		// 	`todoID: ${todo.id}, completedTodoID: ${completedTodoID}, inputTodo: ${inputTodo}, todo.Completed: ${todo.completed} `
-		// );
-		// try {
-		// const response =
-		await fetch(url + completedTodoID, {
-			method: 'PATCH',
-			muteHttpExceptions: true,
-			headers: {
-				Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				fields: {
-					Title: todoTitle,
-					Completed: false,
+		try {
+			await fetch(url + completedTodoID, {
+				method: 'PATCH',
+				muteHttpExceptions: true,
+				headers: {
+					Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+					'Content-Type': 'application/json',
 				},
-			}),
-		});
-		// const json = await response.json();
-		loadTodos();
-		// } catch (error) {
-		// 	console.error(error);
-		// }
+				body: JSON.stringify({
+					fields: {
+						Title: todoTitle,
+						Completed: false,
+					},
+				}),
+			});
+			loadTodos();
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	// REMOVE TODO
 	const removeTodo = async (id) => {
-		await fetch(url + id, {
-			method: 'DELETE',
-			headers: {
-				Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
-				'Content-Type': 'application/json',
-			},
-		});
-		let updatedTodos = todoList.filter((todo) => id !== todo.id);
-		setTodoList(updatedTodos);
-		loadTodos();
+		try {
+			await fetch(url + id, {
+				method: 'DELETE',
+				headers: {
+					Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+					'Content-Type': 'application/json',
+				},
+			});
+			let updatedTodos = todoList.filter((todo) => id !== todo.id);
+			setTodoList(updatedTodos);
+			loadTodos();
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	// RENDER TODOS
@@ -169,6 +172,7 @@ function App() {
 										onAddTodo={addTodo}
 										isMuted={isMuted}
 										setIsMuted={setIsMuted}
+										loadTodos={loadTodos}
 									/>
 									{isLoading ? (
 										<p>Loading...</p>
@@ -196,6 +200,7 @@ function App() {
 										numberTodos={todoList.length}
 										isMuted={isMuted}
 										setIsMuted={setIsMuted}
+										loadTodos={loadTodos}
 									/>
 									<TodoList
 										todoList={todoList}

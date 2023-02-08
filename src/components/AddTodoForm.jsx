@@ -17,7 +17,11 @@ function AddTodoForm({
 	const handleAddTodo = (event) => {
 		if (todoTitle !== '') {
 			onAddTodo(todoTitle);
+			console.log(event);
 		}
+	};
+	const handleMute = () => {
+		setIsMuted(!isMuted);
 	};
 
 	return (
@@ -38,11 +42,11 @@ function AddTodoForm({
 				</Button>
 
 				{isMuted ? (
-					<Button onClick={() => setIsMuted(false)}>
+					<Button onClick={handleMute}>
 						<MdVolumeOff className='btn-volume' />
 					</Button>
 				) : (
-					<Button onClick={() => setIsMuted(true)}>
+					<Button onClick={handleMute}>
 						<MdVolumeUp className='btn-volume' />
 					</Button>
 				)}
