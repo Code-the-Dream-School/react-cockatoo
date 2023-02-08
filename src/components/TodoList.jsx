@@ -1,11 +1,15 @@
 import React from 'react';
 import TodoListItem from './TodoListItem';
 
-function TodoList({ todoList, onRemoveTodo, onUpdateTodo, todoListName }) {
-	console.log(todoList);
+const TodoList = ({
+	todoList,
+	onRemoveTodo,
+	onUpdateTodo,
+	isMuted,
+	loadTodos,
+}) => {
 	return (
 		<>
-			<h1>{todoListName}</h1>
 			<ul>
 				{todoList.map((todo) => (
 					<TodoListItem
@@ -13,11 +17,14 @@ function TodoList({ todoList, onRemoveTodo, onUpdateTodo, todoListName }) {
 						todo={todo}
 						onUpdateTodo={onUpdateTodo}
 						onRemoveTodo={onRemoveTodo}
+						isMuted={isMuted}
+						numberOfTodosLeft={todoList.length}
+						loadTodos={loadTodos}
 					/>
 				))}
 			</ul>
 		</>
 	);
-}
+};
 
 export default TodoList;
