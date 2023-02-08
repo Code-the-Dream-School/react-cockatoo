@@ -11,12 +11,21 @@ const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_I
 function App() {
 	const [todoList, setTodoList] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [isMuted, setIsMuted] = useState(false);
 
 	// GET TODOS FROM (AIRTABLE) DB
 	useEffect(() => {
 		loadTodos();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	// //PLAY SOUND ON TODO COMPLETION
+	// useEffect(() => {
+	// 	const audio = new Audio('../../yay-6326.mp3');
+	// 	if (!isMuted) {
+	// 		audio.play();
+	// 	}
+	// }, [isMuted]);
 
 	// FORMAT TODOS
 	const formatTodos = (todoList) => {
@@ -54,6 +63,12 @@ function App() {
 				.json()
 				.then((result) => formatTodos(result.records))
 				.then((result) => setTodoList(result));
+
+			if (todoList.length < 1 && !isMuted) {
+				const audio = new Audio('../../yay-6326.mp3');
+				audio.play();
+			}
+
 			setIsLoading(false);
 		} catch (error) {
 			setIsLoading(false);
@@ -98,38 +113,41 @@ function App() {
 	};
 
 	// UPDATE TODO
-	const updateTodo = async (inputTodo, completedTodoID, isCompleted) => {
+	const updateTodo = async (completedTodoID, isCompleted) => {
 		let updatedTodos = todoList.map((todo) => {
 			if (todo.id === completedTodoID) {
 				todo.completed = isCompleted;
-				// console.log(
-				// 	`todoID: ${todo.id}, completedTodoID: ${completedTodoID}, inputTodo: ${inputTodo}, todo.Completed: ${todo.completed} `
-				// );
 			}
 			return todo;
 		});
-
 		setTodoList(updatedTodos);
-
-		await fetch(url + completedTodoID, {
-			method: 'PATCH',
-			headers: {
-				Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				records: [
-					{
-						id: completedTodoID,
-						fields: {
-							Title: inputTodo,
-							Completed: isCompleted,
+		// console.log(
+		// 	`todoID: ${todo.id}, completedTodoID: ${completedTodoID}, inputTodo: ${inputTodo}, todo.Completed: ${todo.completed} `
+		// );
+		try {
+			const response = await fetch(url + completedTodoID, {
+				method: 'PATCH',
+				muteHttpExceptions: true,
+				headers: {
+					Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					records: [
+						{
+							fields: {
+								Completed: false,
+							},
 						},
-					},
-				],
-			}),
-		});
-		loadTodos();
+					],
+				}),
+			});
+			const json = await response.json();
+			console.log(json);
+			loadTodos();
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	// REMOVE TODO
@@ -164,6 +182,7 @@ function App() {
 				/>
 				<BrowserRouter>
 					<Routes>
+						{/* ROUTE / */}
 						<Route
 							exact
 							path='/'
@@ -173,6 +192,8 @@ function App() {
 										todoListName={'TODOS'}
 										numberTodos={todoList.length}
 										onAddTodo={addTodo}
+										isMuted={isMuted}
+										setIsMuted={setIsMuted}
 									/>
 									{isLoading ? (
 										<p>Loading...</p>
@@ -181,23 +202,32 @@ function App() {
 											todoList={todoList}
 											onUpdateTodo={updateTodo}
 											onRemoveTodo={removeTodo}
+											isMuted={isMuted}
+											loadTodos={loadTodos}
 										/>
 									)}
 								</>
 							}
 						/>
-
+						{/* ROUTE /new */}
 						<Route
 							exact
 							path='/new'
 							element={
 								<>
 									<h1>New Todo List</h1>
-									<AddTodoForm onAddTodo={addTodo} />
+									<AddTodoForm
+										onAddTodo={addTodo}
+										numberTodos={todoList.length}
+										isMuted={isMuted}
+										setIsMuted={setIsMuted}
+									/>
 									<TodoList
 										todoList={todoList}
 										onUpdateTodo={updateTodo}
 										onRemoveTodo={removeTodo}
+										isMuted={isMuted}
+										loadTodos={loadTodos}
 									/>
 								</>
 							}

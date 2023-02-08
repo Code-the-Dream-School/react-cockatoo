@@ -6,6 +6,7 @@ body {
   justify-content: center;
   margin-top: 12vh;
   font-family: 'Raleway', sans-serif;
+  line-height: 1.35em;
   color: #2b2c3a;
   background-color: rgb(251, 251, 251);
 }
@@ -54,6 +55,7 @@ h1 {
  font-family: 'Bungee Inline', cursive;
  color: #10465b;
  text-align: center;
+ font-size:3em;
 }
 input, textarea {
   background-color:  rgb(247, 247, 247);
@@ -69,11 +71,17 @@ input, textarea {
   max-width: 550px;
 }
 .btn-add {
-  color: rgb(250, 250, 250);
+  color: rgba(250, 250, 250, .5);
   font-size: 2.5em;
 }
 .btn-close {
   vertical-align: text-bottom;
   padding-bottom: 1px;
   margin-left: 10px;
+}
+.btn-volume {
+  font-size:2.5em;
+  color: rgba(250, 250, 250, .5);
+  /* color:#2b2c3a; */
+  z-index: 0;
 }
