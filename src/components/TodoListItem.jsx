@@ -32,6 +32,7 @@ function TodoListItem({
 		setIsCompleted(!isCompleted);
 		return;
 	};
+
 	const handleChange = () => {
 		handleCompleted();
 		onUpdateTodo(todo.id, todo.completed);

@@ -19,14 +19,6 @@ function App() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	// //PLAY SOUND ON TODO COMPLETION
-	// useEffect(() => {
-	// 	const audio = new Audio('../../yay-6326.mp3');
-	// 	if (!isMuted) {
-	// 		audio.play();
-	// 	}
-	// }, [isMuted]);
-
 	// FORMAT TODOS
 	const formatTodos = (todoList) => {
 		const updatedTodoList = todoList.map((item) => {
