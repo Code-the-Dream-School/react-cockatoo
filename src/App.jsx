@@ -30,7 +30,6 @@ function App() {
 				time: currentDate[1].split('.')[0],
 				completed: item.fields.Completed || false,
 			};
-
 			return todo;
 		});
 		return updatedTodoList;
@@ -55,12 +54,6 @@ function App() {
 				.json()
 				.then((result) => formatTodos(result.records))
 				.then((result) => setTodoList(result));
-
-			if (todoList.length < 1 && !isMuted) {
-				const audio = new Audio('../../yay-6326.mp3');
-				audio.play();
-			}
-
 			setIsLoading(false);
 		} catch (error) {
 			setIsLoading(false);
@@ -105,41 +98,31 @@ function App() {
 	};
 
 	// UPDATE TODO
-	const updateTodo = async (completedTodoID, isCompleted) => {
-		let updatedTodos = todoList.map((todo) => {
-			if (todo.id === completedTodoID) {
-				todo.completed = isCompleted;
-			}
-			return todo;
-		});
-		setTodoList(updatedTodos);
+	const updateTodo = async (todoTitle, completedTodoID, isCompleted) => {
 		// console.log(
 		// 	`todoID: ${todo.id}, completedTodoID: ${completedTodoID}, inputTodo: ${inputTodo}, todo.Completed: ${todo.completed} `
 		// );
-		try {
-			const response = await fetch(url + completedTodoID, {
-				method: 'PATCH',
-				muteHttpExceptions: true,
-				headers: {
-					Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
-					'Content-Type': 'application/json',
+		// try {
+		// const response =
+		await fetch(url + completedTodoID, {
+			method: 'PATCH',
+			muteHttpExceptions: true,
+			headers: {
+				Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				fields: {
+					Title: todoTitle,
+					Completed: false,
 				},
-				body: JSON.stringify({
-					records: [
-						{
-							fields: {
-								Completed: false,
-							},
-						},
-					],
-				}),
-			});
-			const json = await response.json();
-			console.log(json);
-			loadTodos();
-		} catch (error) {
-			console.error(error);
-		}
+			}),
+		});
+		// const json = await response.json();
+		loadTodos();
+		// } catch (error) {
+		// 	console.error(error);
+		// }
 	};
 
 	// REMOVE TODO

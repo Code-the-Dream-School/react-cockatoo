@@ -18,7 +18,6 @@ function AddTodoForm({
 		if (todoTitle !== '') {
 			onAddTodo(todoTitle);
 		}
-		setTodoTitle('');
 	};
 
 	return (

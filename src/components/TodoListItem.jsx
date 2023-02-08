@@ -35,7 +35,7 @@ function TodoListItem({
 
 	const handleChange = () => {
 		handleCompleted();
-		onUpdateTodo(todo.id, todo.completed);
+		onUpdateTodo(todo.title, todo.id, todo.completed);
 		loadTodos();
 	};
 
