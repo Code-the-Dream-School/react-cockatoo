@@ -17,7 +17,6 @@ function AddTodoForm({
 	const handleAddTodo = (event) => {
 		if (todoTitle !== '') {
 			onAddTodo(todoTitle);
-			console.log(event);
 		}
 	};
 	const handleMute = () => {
@@ -32,6 +31,7 @@ function AddTodoForm({
 
 			<form onSubmit={handleAddTodo}>
 				<InputWithLabel
+					id='todoTitle'
 					todoTitle={todoTitle}
 					handleTitleChange={handleTitleChange}
 				>

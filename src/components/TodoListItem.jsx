@@ -13,29 +13,34 @@ function TodoListItem({
 	onRemoveTodo,
 	isMuted,
 	numberOfTodosLeft,
+	numberOfTodosCompleted,
 	loadTodos,
 }) {
 	const [isCompleted, setIsCompleted] = useState(todo.completed);
 
 	const handleCompleted = () => {
 		//PLAY SOUND ON COMPLETION OF ALL TODOS
-		if (numberOfTodosLeft < 1 && !isMuted) {
+		if (
+			(numberOfTodosLeft < 1 && !isMuted) ||
+			(numberOfTodosCompleted === numberOfTodosLeft && !isMuted)
+		) {
 			const audio = new Audio('../../yay.mp3');
 			audio.play();
 			return;
+		} else {
+			//PLAY SOUND ON EACH TODO COMPLETION
+			if (!isCompleted && !isMuted) {
+				const audio = new Audio('../../yaaas.mp3');
+				audio.play();
+			}
 		}
-		//PLAY SOUND ON EACH TODO COMPLETION
-		if (!isCompleted && !isMuted) {
-			const audio = new Audio('../../yaaas.mp3');
-			audio.play();
-		}
-		setIsCompleted(!isCompleted);
 		return;
 	};
 
 	const handleChange = () => {
+		setIsCompleted(!isCompleted);
 		handleCompleted();
-		onUpdateTodo(todo.title, todo.id, todo.completed);
+		onUpdateTodo(todo.title, todo.id, !isCompleted);
 		loadTodos();
 	};
 

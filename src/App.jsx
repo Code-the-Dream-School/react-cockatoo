@@ -65,19 +65,6 @@ function App() {
 	// ADD TODO
 	const addTodo = async (inputTodo) => {
 		try {
-			let updatedTodos = [
-				{
-					id: Date.now(),
-					fields: {
-						Title: inputTodo,
-						Completed: false,
-					},
-				},
-				...todoList,
-			];
-
-			setTodoList(updatedTodos);
-
 			await fetch(url, {
 				method: 'POST',
 				headers: {
@@ -106,7 +93,7 @@ function App() {
 		try {
 			await fetch(url + completedTodoID, {
 				method: 'PATCH',
-				muteHttpExceptions: true,
+				// muteHttpExceptions: true,
 				headers: {
 					Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
 					'Content-Type': 'application/json',
@@ -114,11 +101,12 @@ function App() {
 				body: JSON.stringify({
 					fields: {
 						Title: todoTitle,
-						Completed: false,
+						Completed: isCompleted,
 					},
 				}),
 			});
 			loadTodos();
+			console.log(todoList);
 		} catch (error) {
 			console.error(error);
 		}
