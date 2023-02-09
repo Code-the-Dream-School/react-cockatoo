@@ -10,7 +10,10 @@ function AddTodoForm(props) {
   const hundleAddTodo = (e) => {
     e.preventDefault();
     const todoTitle = e.target.title.value;
-    onAddTodo({ title: todoTitle, id: Date.now() });
+    //prevent empty todo title
+    todoTitle.trim() === ""
+      ? alert("Please enter a todo title")
+      : onAddTodo({ title: todoTitle, id: Date.now() });
     setTodoTitle(" ");
   };
 
