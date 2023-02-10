@@ -1,3 +1,5 @@
+//  TODO APP : Designed to cheer for each little accomplishment we make as we progress toward our goals - like building an app. So this app cheers for you when you complete each task and celebrates with you when you complete all of your tasks.
+
 import React, { useState, useEffect } from 'react';
 import AddTodoForm from './components/AddTodoForm';
 import TodoList from './components/TodoList';
@@ -149,7 +151,6 @@ function App() {
 				/>
 				<BrowserRouter>
 					<Routes>
-						{/* ROUTE / */}
 						<Route
 							exact
 							path='/'

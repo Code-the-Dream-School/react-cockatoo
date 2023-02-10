@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.ListItem {
+  font-family: 'Raleway', sans-serif;
+  padding-bottom: 15px;
+}
+
+.Checkbox {
+	color: '#2fb583';
+};
