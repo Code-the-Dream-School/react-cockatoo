@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import AddTodoForm from './components/AddTodoForm';
 import TodoList from './components/TodoList';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import CompletedTodos from './components/CompletedTodos';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { MdOutlinePlaylistAddCheck, MdArrowBackIosNew } from 'react-icons/md';
 
 const airtableName = 'Todos';
 const airtableView = '?view=Grid%20view';
@@ -93,7 +95,7 @@ function App() {
 		try {
 			await fetch(url + completedTodoID, {
 				method: 'PATCH',
-				// muteHttpExceptions: true,
+				muteHttpExceptions: true,
 				headers: {
 					Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
 					'Content-Type': 'application/json',
@@ -106,7 +108,6 @@ function App() {
 				}),
 			});
 			loadTodos();
-			console.log(todoList);
 		} catch (error) {
 			console.error(error);
 		}
@@ -154,6 +155,9 @@ function App() {
 							path='/'
 							element={
 								<>
+									<Link to='/new'>
+										<MdOutlinePlaylistAddCheck className='btn-completed' />
+									</Link>
 									<AddTodoForm
 										todoListName={'TODOS'}
 										numberTodos={todoList.length}
@@ -182,21 +186,12 @@ function App() {
 							path='/new'
 							element={
 								<>
-									<h1>New Todo List</h1>
-									<AddTodoForm
-										onAddTodo={addTodo}
-										numberTodos={todoList.length}
-										isMuted={isMuted}
-										setIsMuted={setIsMuted}
-										loadTodos={loadTodos}
-									/>
-									<TodoList
-										todoList={todoList}
-										onUpdateTodo={updateTodo}
-										onRemoveTodo={removeTodo}
-										isMuted={isMuted}
-										loadTodos={loadTodos}
-									/>
+									<Link to='/'>
+										<MdArrowBackIosNew className='btn-back' />
+									</Link>
+									<h1 className='header-completed'>Completed Todos</h1>
+
+									<CompletedTodos todoList={todoList} />
 								</>
 							}
 						/>
