@@ -28,6 +28,12 @@ h1 {
  text-align: center;
  font-size:3em;
 }
+h3 {
+ color: #57575f;
+ text-align: center;
+ font-size:1.25em;
+ letter-spacing: .5;
+}
 input, textarea {
   background-color:  rgb(247, 247, 247);
 }
@@ -66,7 +72,7 @@ ul {
   border-radius: 50px;
   width: 70vw;
   max-width: 550px;
-  min-width: 400px;
+  min-width: 500px;
 }
 .btn-add {
   color: rgba(250, 250, 250, .5);
@@ -102,7 +108,7 @@ ul {
   padding-bottom: 15px;
 }
 .header-completed {
-  padding-top: 20px;
+  padding-top: 35px;
   margin-bottom: 50px;
 }
 .wrapper {
@@ -129,7 +135,10 @@ ul {
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
+  h1 {
+    font-size: .5em;
+  }
   .AppContainer {
     width: 80vw;
     padding: 40px 30px;
