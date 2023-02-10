@@ -21,9 +21,6 @@ function TodoListItem({
 	const numberOfTodosLeft = todoList.length;
 
 	const handleCompleted = () => {
-		console.log('numberOfTodosCompleted', numberOfTodosCompleted);
-		console.log('numberOfTodosLeft', todoList.length);
-		console.log('todo.completed', todo.completed);
 		//PLAY SOUND ON COMPLETION OF ALL TODOS
 		if (
 			(!todo.completed && numberOfTodosLeft === 1 && !isMuted) ||
