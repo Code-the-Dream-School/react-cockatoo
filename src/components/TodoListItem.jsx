@@ -12,17 +12,24 @@ function TodoListItem({
 	onUpdateTodo,
 	onRemoveTodo,
 	isMuted,
-	numberOfTodosLeft,
-	numberOfTodosCompleted,
+	todoList,
 	loadTodos,
 }) {
 	const [isCompleted, setIsCompleted] = useState(todo.completed);
+	const numberOfTodosCompleted =
+		todoList.filter((todo) => todo.completed === true).length + 1;
+	const numberOfTodosLeft = todoList.length;
 
 	const handleCompleted = () => {
+		console.log('numberOfTodosCompleted', numberOfTodosCompleted);
+		console.log('numberOfTodosLeft', todoList.length);
+		console.log('todo.completed', todo.completed);
 		//PLAY SOUND ON COMPLETION OF ALL TODOS
 		if (
-			(numberOfTodosLeft < 1 && !isMuted) ||
-			(numberOfTodosCompleted === numberOfTodosLeft && !isMuted)
+			(!todo.completed && numberOfTodosLeft === 1 && !isMuted) ||
+			(!todo.completed &&
+				numberOfTodosCompleted === numberOfTodosLeft &&
+				!isMuted)
 		) {
 			const audio = new Audio('../../yay.mp3');
 			audio.play();
