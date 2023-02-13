@@ -1,12 +1,16 @@
 //  TODO APP : Designed to cheer for each little accomplishment we make as we progress toward our goals - like building an app. So this app cheers for you when you complete each task and celebrates with you when you complete all of your tasks.
 
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { MdOutlinePlaylistAddCheck, MdArrowBackIosNew } from 'react-icons/md';
 import React, { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
+
 import AddTodoForm from './components/AddTodoForm';
 import TodoList from './components/TodoList';
 import CompletedTodos from './components/CompletedTodos';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import { MdOutlinePlaylistAddCheck, MdArrowBackIosNew } from 'react-icons/md';
+import { ConfiguredToast } from './components/ConfiguredToast';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const airtableName = 'Todos';
 const airtableView = '?view=Grid%20view';
@@ -48,10 +52,8 @@ function App() {
 				},
 			});
 			if (!response.ok) {
-				throw new Error(
-					toast.error(
-						`Errr, something isn't right here. Please reload page. Error: ${response.status}`
-					)
+				toast.error(
+					`Errr, something isn't right here. Please reload page. Error: ${response.status}`
 				);
 			}
 			await response
@@ -62,7 +64,6 @@ function App() {
 		} catch (error) {
 			setIsLoading(false);
 			console.log('ERROR:', error);
-			return null;
 		}
 	};
 
@@ -135,71 +136,62 @@ function App() {
 
 	// RENDER TODOS
 	return (
-		<div className='wrapper'>
-			<div className='AppContainer'>
-				<ToastContainer
-					position='top-right'
-					autoClose={5000}
-					hideProgressBar={true}
-					newestOnTop={false}
-					closeOnClick
-					rtl={false}
-					pauseOnFocusLoss
-					draggable
-					pauseOnHover
-					theme='dark'
-				/>
-				<BrowserRouter>
-					<Routes>
-						<Route
-							exact
-							path='/'
-							element={
-								<>
-									<Link to='/new'>
-										<MdOutlinePlaylistAddCheck className='btn-completed' />
-									</Link>
-									<AddTodoForm
-										todoListName={'TODOS'}
-										numberTodos={todoList.length}
-										onAddTodo={addTodo}
-										isMuted={isMuted}
-										setIsMuted={setIsMuted}
-										loadTodos={loadTodos}
-									/>
-									{isLoading ? (
-										<p>Loading...</p>
-									) : (
-										<TodoList
-											todoList={todoList}
-											onUpdateTodo={updateTodo}
-											onRemoveTodo={removeTodo}
+		<>
+			<ConfiguredToast/>
+			<div className='wrapper'>
+				<div className='AppContainer'>
+					<BrowserRouter>
+						<Routes>
+							<Route
+								exact
+								path='/'
+								element={
+									<>
+										<Link to='/new'>
+											<MdOutlinePlaylistAddCheck className='btn-completed' />
+										</Link>
+										<AddTodoForm
+											todoListName={'TODOS'}
+											numberTodos={todoList.length}
+											onAddTodo={addTodo}
 											isMuted={isMuted}
+											setIsMuted={setIsMuted}
 											loadTodos={loadTodos}
 										/>
-									)}
-								</>
-							}
-						/>
-						{/* ROUTE /new */}
-						<Route
-							exact
-							path='/new'
-							element={
-								<>
-									<Link to='/'>
-										<MdArrowBackIosNew className='btn-back' />
-									</Link>
-									<h1 className='header-completed'>Completed Todos</h1>
+										{isLoading ? (
+											<p>Loading...</p>
+										) : (
+											<TodoList
+												todoList={todoList}
+												onUpdateTodo={updateTodo}
+												onRemoveTodo={removeTodo}
+												isMuted={isMuted}
+												loadTodos={loadTodos}
+											/>
+										)}
+									</>
+								}
+							/>
+							{/* ROUTE /new */}
+							<Route
+								exact
+								path='/new'
+								element={
+									<>
+										<Link to='/'>
+											<MdArrowBackIosNew className='btn-back' />
+										</Link>
+										<h1 className='header-completed'>Completed Todos</h1>
 
-									<CompletedTodos todoList={todoList} />
-								</>
-							}
-						/>
-					</Routes>
-				</BrowserRouter>
+										<CompletedTodos todoList={todoList} />
+									</>
+								}
+							/>
+						</Routes>
+					</BrowserRouter>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 export default App;
