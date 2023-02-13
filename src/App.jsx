@@ -23,7 +23,13 @@ function App() {
 
 	// GET TODOS FROM (AIRTABLE) DB
 	useEffect(() => {
-		loadTodos();
+		const timeoutId = setTimeout(() => {
+			loadTodos();
+		}, 3000);
+		// Returning a cleanup function to prevent the useEffect hook from firing twice. This also stops 2nd toast error notification.
+		return () => {
+			clearTimeout(timeoutId);
+		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -137,7 +143,7 @@ function App() {
 	// RENDER TODOS
 	return (
 		<>
-			<ConfiguredToast/>
+			<ConfiguredToast />
 			<div className='wrapper'>
 				<div className='AppContainer'>
 					<BrowserRouter>
