@@ -15,6 +15,7 @@ function AddTodoForm({
 		setTodoTitle(event.target.value);
 	};
 	const handleAddTodo = (event) => {
+		event.preventDefault();
 		if (todoTitle !== '') {
 			onAddTodo(todoTitle);
 		}
