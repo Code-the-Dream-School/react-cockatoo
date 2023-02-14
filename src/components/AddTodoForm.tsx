@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import InputWithLabel from './InputWithLabel.js';
+import InputWithLabel from './InputWithLabel.jsx';
 import Button from './Button';
 import { MdAdd, MdVolumeOff, MdVolumeUp } from 'react-icons/md';
 import PropTypes from 'prop-types';
