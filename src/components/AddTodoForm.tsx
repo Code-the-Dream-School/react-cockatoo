@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import InputWithLabel from './InputWithLabel';
+import InputWithLabel from './InputWithLabel.js';
 import Button from './Button';
 import { MdAdd, MdVolumeOff, MdVolumeUp } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
-function AddTodoForm({
+const AddTodoForm = ({
 	todoListName,
 	numberTodos,
 	onAddTodo,
 	isMuted,
 	setIsMuted,
-}) {
+}) => {
 	const [todoTitle, setTodoTitle] = useState('');
 	const handleTitleChange = (event) => {
 		setTodoTitle(event.target.value);
@@ -54,6 +55,13 @@ function AddTodoForm({
 			</form>
 		</>
 	);
+};
+AddTodoForm.propTypes =  {
+	todoListName: PropTypes.string,
+	numberTodos: PropTypes.number,
+	onAddTodo: PropTypes.func,
+	isMuted: PropTypes.bool,
+	setIsMuted: PropTypes.func,
 }
 
 export default AddTodoForm;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import style from '../styles/TodoListItem.module.css';
 import { MdClose } from 'react-icons/md';
 import Checkbox from '@mui/material/Checkbox';
+import PropTypes from 'prop-types';
 
 const green = {
 	500: '#2fb583',
@@ -71,5 +72,14 @@ function TodoListItem({
 		</>
 	);
 }
+
+TodoListItem.propTypes = {
+	todo: PropTypes.any,
+	onUpdateTodo: PropTypes.func,
+	onRemoveTodo: PropTypes.func,
+	isMuted: PropTypes.bool,
+	todoList: PropTypes.arrayOf(PropTypes.any),
+	loadTodos: PropTypes.func,
+};
 
 export default TodoListItem;

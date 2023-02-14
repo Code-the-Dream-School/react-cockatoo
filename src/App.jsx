@@ -5,7 +5,7 @@ import { MdOutlinePlaylistAddCheck, MdArrowBackIosNew } from 'react-icons/md';
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-import AddTodoForm from './components/AddTodoForm';
+import AddTodoForm from './components/AddTodoForm.tsx';
 import TodoList from './components/TodoList';
 import CompletedTodos from './components/CompletedTodos';
 import { ConfiguredToast } from './components/ConfiguredToast';
@@ -25,7 +25,7 @@ function App() {
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
 			loadTodos();
-		}, 3000);
+		}, 1000);
 		// Returning a cleanup function to prevent the useEffect hook from firing twice. This also stops 2nd toast error notification.
 		return () => {
 			clearTimeout(timeoutId);
