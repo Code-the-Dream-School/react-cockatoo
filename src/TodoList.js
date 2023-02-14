@@ -11,7 +11,8 @@ const TodoList = props => {
 				{todoList.map((todo) => {
           return <TodoListItem 
           key={todo.id}
-          title={todo.title} />
+          title={todo.title} 
+          onRemoveTodo/>
         })}
 			</ul>
 		</div>
