@@ -1,27 +1,16 @@
-import React from 'react';
-import TodoListItem from './TodoListItem';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-const TodoList = ({
-	todoList,
-	onRemoveTodo,
-	onUpdateTodo,
-	isMuted,
-	loadTodos,
-}) => {
+import TodoListItem from './TodoListItem';
+import { TodoContext } from '../context/TodoContext';
+
+const TodoList = () => {
+	const { todoList } = useContext(TodoContext);
 	return (
 		<>
 			<ul>
 				{todoList.map((todo) => (
-					<TodoListItem
-						key={todo.id}
-						todo={todo}
-						onUpdateTodo={onUpdateTodo}
-						onRemoveTodo={onRemoveTodo}
-						isMuted={isMuted}
-						todoList={todoList}
-						loadTodos={loadTodos}
-					/>
+					<TodoListItem key={todo.id} todo={todo} />
 				))}
 			</ul>
 		</>

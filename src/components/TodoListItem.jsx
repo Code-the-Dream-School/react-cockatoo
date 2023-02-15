@@ -1,22 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import style from '../styles/TodoListItem.module.css';
 import { MdClose } from 'react-icons/md';
 import Checkbox from '@mui/material/Checkbox';
 import PropTypes from 'prop-types';
+import { TodoContext } from '../context/TodoContext';
 
 const green = {
 	500: '#2fb583',
 };
 
-function TodoListItem({
-	todo,
-	onUpdateTodo,
-	onRemoveTodo,
-	isMuted,
-	todoList,
-	loadTodos,
-}) {
+const TodoListItem = ({ todo }) => {
+	const { updateTodo, removeTodo, isMuted, todoList, loadTodos } =
+		useContext(TodoContext);
 	const [isCompleted, setIsCompleted] = useState(todo.completed);
+
 	const numberOfTodosCompleted =
 		todoList.filter((todo) => todo.completed === true).length + 1;
 	const numberOfTodosLeft = todoList.length;
@@ -45,7 +42,7 @@ function TodoListItem({
 	const handleChange = () => {
 		setIsCompleted(!isCompleted);
 		handleCompleted();
-		onUpdateTodo(todo.title, todo.id, !isCompleted);
+		updateTodo(todo.title, todo.id, !isCompleted);
 		loadTodos();
 	};
 
@@ -65,13 +62,13 @@ function TodoListItem({
 				/>
 
 				{todo.title}
-				<span onClick={() => onRemoveTodo(todo.id)}>
+				<span onClick={() => removeTodo(todo.id)}>
 					<MdClose className='btn-close' />
 				</span>
 			</li>
 		</>
 	);
-}
+};
 
 TodoListItem.propTypes = {
 	todo: PropTypes.any,

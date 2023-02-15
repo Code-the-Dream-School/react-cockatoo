@@ -1,24 +1,23 @@
-import React, { useState } from 'react';
-import InputWithLabel from './InputWithLabel.jsx';
+import React, { useState, useContext } from 'react';
+
 import Button from './Button';
 import { MdAdd, MdVolumeOff, MdVolumeUp } from 'react-icons/md';
 import PropTypes from 'prop-types';
 
-const AddTodoForm = ({
-	todoListName,
-	numberTodos,
-	onAddTodo,
-	isMuted,
-	setIsMuted,
-}) => {
+import InputWithLabel from './InputWithLabel.jsx';
+import { TodoContext } from '../context/TodoContext.jsx';
+
+const AddTodoForm = ({ todoListName }) => {
+	const { todoList, addTodo, setIsMuted, isMuted } = useContext(TodoContext);
+
 	const [todoTitle, setTodoTitle] = useState('');
 	const handleTitleChange = (event) => {
-		setTodoTitle(event.target.value);
+		setTodoTitle(event.target.value.trim());
 	};
 	const handleAddTodo = (event) => {
 		event.preventDefault();
 		if (todoTitle !== '') {
-			onAddTodo(todoTitle);
+			addTodo(todoTitle);
 		}
 	};
 	const handleMute = () => {
@@ -27,8 +26,9 @@ const AddTodoForm = ({
 
 	return (
 		<>
+			{console.log(`addTodo: ${addTodo}`)}
 			<h1>
-				{numberTodos} . {todoListName}
+				{todoList.length} . {todoListName}
 			</h1>
 
 			<form onSubmit={handleAddTodo}>
@@ -56,12 +56,13 @@ const AddTodoForm = ({
 		</>
 	);
 };
-AddTodoForm.propTypes =  {
+
+AddTodoForm.propTypes = {
 	todoListName: PropTypes.string,
 	numberTodos: PropTypes.number,
 	onAddTodo: PropTypes.func,
 	isMuted: PropTypes.bool,
 	setIsMuted: PropTypes.func,
-}
+};
 
 export default AddTodoForm;
