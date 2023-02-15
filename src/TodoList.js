@@ -3,8 +3,7 @@ import TodoListItem from './TodoListItem';
 
 
 
-const TodoList = props => {
-  const {todoList} = props;
+const TodoList = ({todoList, onRemoveTodo}) => {
 	return (
 		<div>
         <ul >
@@ -12,7 +11,9 @@ const TodoList = props => {
           return <TodoListItem 
           key={todo.id}
           title={todo.title} 
-          onRemoveTodo/>
+          id={todo.id}
+          onRemoveTodo={onRemoveTodo}
+          />
         })}
 			</ul>
 		</div>
