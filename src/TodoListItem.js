@@ -1,10 +1,9 @@
 import React from 'react';
-const TodoListItem = (props) => {
+
+// update props to use destructuring
+const TodoListItem = ({title}) => {
     return (
-        <li>
-        <span>{props.todo.title}</span>
-    
-        </li> 
+        <li>{title}</li> 
     )
 
 }

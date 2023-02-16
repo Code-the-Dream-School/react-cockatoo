@@ -1,26 +1,47 @@
 import React from 'react';
 
-const AddTodoForm = (props) => {
+// update props to use destructuring
+const AddTodoForm = ({onAddTodo}) => {
     // Add props as a parameter in the AddTodoForm function
-    const [inputText, setInputText] = React.useState("");
+   
+    // Create new state variable named todoTitle with setter setTodoTitle
+    const [todoTitle, setTodoTitle] = React.useState ("");
+
+    function handleTitleChange(event) {
+        // retrieve the input value from the event object and store in variable named newTodoTitle
+
+        let newTodoTitle = event.target.value;
+        // call the state setter setTodoTitle and pass newTodoTitle
+    setTodoTitle(newTodoTitle)
+    }
+   
     function handleAddTodo(event) {
+        // Inside handleAddTodo, remove the reset() method and replace it with logic to reset the todoTitle state to an empty String
+
+
+    //     Inside handleAddTodo, update the onAddTodo callback prop to pass an Object instead of a String; Object should have the following properties:
+    //     title: equal to todoTitle
+    //     id: unique identifier (hint: use Date.now() to generate a unique number)
+    //    Disclaimer: we are suggesting Date.now() for now as a placeholder for unique number generation, but in the future you should not use this
+
+        //remove the todoTitle variable and update onAddTodo callback handler to pass our todoTitle state variable instead
         
         // let todoTitle = event.preventDefault();
         event.preventDefault();
-        let todoTitle = event.target[0].value;
+        
         console.log(todoTitle);
-        setInputText(''); 
-        props.onAddTodo(todoTitle)
+        setTodoTitle(''); 
+        onAddTodo({title: todoTitle, id: Date.now()});
         // Inside the handleAddTodo function, invoke the onAddTodo callback prop and pass todoTitle as an argument
         };
-   
-        
-        
-    
-return (
+
+// Add value prop equal to todoTitle from component props */}
+        /* Add onChange prop equal to handleTitleChange function reference (we will declare this function in the next step) */
+  return (
     <form onSubmit={handleAddTodo}>
-        <lable htmlFor="todoTitle">Title</lable>
-        <input id="todoTitle" name="title" value={inputText} onChange={(event) => setInputText(event.target.value)}></input>
+        <label htmlFor="todoTitle">Title</label>
+        
+        <input id="todoTitle" name="title" value={todoTitle} onChange={handleTitleChange}></input>
         <button type="submit">Add</button>
     </form>
 )
