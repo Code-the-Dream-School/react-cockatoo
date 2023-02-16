@@ -7,7 +7,7 @@ import AddTodoForm from './AddTodoForm';
 function useSemiPersistentState() {
    
   // Create new state variable named todoTitle with setter setTodoTitle
-   const [todoList, setTodoList] = React.useState(JSON.parse(localStorage.getItem("savedTodoList")));
+   const [todoList, setTodoList] = React.useState(JSON.parse(localStorage.getItem("savedTodoList")) || []);
   
    // Define a useEffect React hook with todoList as a dependency
   // Inside the side-effect handler function, save the todoList inside localStorage with the key "savedTodoList"
