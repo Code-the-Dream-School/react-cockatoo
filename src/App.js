@@ -1,13 +1,30 @@
 import React from 'react';
-
 import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 
 
+// create custom hook
+function useSemiPersistentState() {
+   
+  // Create new state variable named todoTitle with setter setTodoTitle
+   const [todoList, setTodoList] = React.useState(JSON.parse(localStorage.getItem("savedTodoList")));
+  
+   // Define a useEffect React hook with todoList as a dependency
+  // Inside the side-effect handler function, save the todoList inside localStorage with the key "savedTodoList"
+  // convert todoList to a string before saving in localStorage 
+  React.useEffect(() => {
+  localStorage.setItem("savedTodoList", JSON.stringify(todoList));
+  }, [todoList]);
+  
+
+  return [todoList, setTodoList];
+};
+
+
+
 function App () {
 
-  // Create new state variable named todoTitle with setter setTodoTitle
-  const [todoList, setTodoList] = React.useState ([]);
+  const [todoList, setTodoList] = useSemiPersistentState("");
 
   // Remove the newTodo state variable and the corresponding JSX that displays it
 
@@ -21,7 +38,7 @@ function addTodo(newTodo) {
   setTodoList([...todoList, newTodo])
 }
   return (
-    <div>
+    <>
       <h1>Todo List</h1> 
      
       {/* Change the value of the onAddTodo prop for AddTodoForm to addTodo */}
@@ -31,13 +48,11 @@ function addTodo(newTodo) {
      
      {/* Pass todoList state as a prop named todoList to the TodoList component */}
      <TodoList todoList = {todoList}/>
-
-
      
      {/* Below the <AddTodoForm /> component, add a paragraph element that displays the value of newTodo variable */}
 
 
-    </div>
+    </>
   );
 }
 
