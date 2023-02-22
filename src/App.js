@@ -21,9 +21,7 @@ function App() {
     }
 
     const removeTodo = (id) => {
-        console.log("id: " + id)
         const newTodoList = todoList.filter(todo => todo.id !== id)
-        console.log(newTodoList)
         setTodoList(newTodoList)
     }
 
