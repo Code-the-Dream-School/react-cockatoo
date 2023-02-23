@@ -6,7 +6,6 @@ import "./index.css";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
-  const [todoTitle, setTodoTitle] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   const removeTodo = (id) => {
@@ -46,8 +45,6 @@ function App() {
         <h1>Todo List</h1>
       </header>
       <AddTodoForm
-        todoTitle={todoTitle}
-        setTodoTitle={setTodoTitle}
         onAddTodo={addTodo}
       />
       {isLoading && <LoadIcon />}
