@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import Button from './Button';
+import styles from '../styles/AddTodoForm.module.css';
 import { MdAdd, MdVolumeOff, MdVolumeUp } from 'react-icons/md';
 import PropTypes from 'prop-types';
 
@@ -8,16 +8,17 @@ import InputWithLabel from './InputWithLabel.jsx';
 import { TodoContext } from '../context/TodoContext.jsx';
 
 const AddTodoForm = ({ todoListName }) => {
-	const { todoList, addTodo, setIsMuted, isMuted } = useContext(TodoContext);
+	const { todoList, addTodo, isMuted, setIsMuted } = useContext(TodoContext);
 
 	const [todoTitle, setTodoTitle] = useState('');
 	const handleTitleChange = (event) => {
-		setTodoTitle(event.target.value.trim());
+		setTodoTitle(event.target.value);
 	};
 	const handleAddTodo = (event) => {
 		event.preventDefault();
 		if (todoTitle !== '') {
 			addTodo(todoTitle);
+			setTodoTitle('');
 		}
 	};
 	const handleMute = () => {
@@ -26,31 +27,28 @@ const AddTodoForm = ({ todoListName }) => {
 
 	return (
 		<>
-			{console.log(`addTodo: ${addTodo}`)}
-			<h1>
+			<h1 className={styles.header}>
 				{todoList.length} . {todoListName}
 			</h1>
 
-			<form onSubmit={handleAddTodo}>
+			<form className={styles.form} onSubmit={handleAddTodo}>
 				<InputWithLabel
-					id='todoTitle'
+					name='todoTitle'
 					todoTitle={todoTitle}
 					handleTitleChange={handleTitleChange}
-				>
-					Todo
-				</InputWithLabel>
-				<Button type='submit'>
-					<MdAdd className='btn-add' />
-				</Button>
+				/>
+				<button className={styles.button} type='submit'>
+					<MdAdd className={styles.btnAdd} onClick={handleAddTodo} />
+				</button>
 
 				{isMuted ? (
-					<Button onClick={handleMute}>
-						<MdVolumeOff className='btn-volume' />
-					</Button>
+					<button className={styles.button} type='button' onClick={handleMute}>
+						<MdVolumeOff className={styles.btnVolume} />
+					</button>
 				) : (
-					<Button onClick={handleMute}>
-						<MdVolumeUp className='btn-volume' />
-					</Button>
+					<button className={styles.button} type='button' onClick={handleMute}>
+						<MdVolumeUp className={styles.btnVolume} />
+					</button>
 				)}
 			</form>
 		</>

@@ -17,7 +17,7 @@ const TodoContextProvider = ({ children }) => {
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {
 			loadTodos();
-		}, 1000);
+		}, 0);
 		// Returning a cleanup function to prevent the useEffect hook from firing twice. This also stops 2nd toast error notification.
 		return () => {
 			clearTimeout(timeoutId);
@@ -33,11 +33,6 @@ const TodoContextProvider = ({ children }) => {
 					Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
 				},
 			});
-			if (!response.ok) {
-				toast.error(
-					`Errr, something isn't right here. Please reload page. Error: ${response.status}`
-				);
-			}
 			await response
 				.json()
 				.then((result) => formatTodos(result.records))
@@ -45,6 +40,9 @@ const TodoContextProvider = ({ children }) => {
 			setIsLoading(false);
 		} catch (error) {
 			setIsLoading(false);
+			toast.error(
+				`Sorry we are unable to connect to your database at this time.`
+			);
 			console.log('ERROR:', error);
 		}
 	};
@@ -83,6 +81,7 @@ const TodoContextProvider = ({ children }) => {
 					],
 				}),
 			});
+			setTodoTitle('');
 			loadTodos();
 		} catch (error) {
 			console.error(error);
@@ -106,6 +105,7 @@ const TodoContextProvider = ({ children }) => {
 					},
 				}),
 			});
+			console.log(todoList);
 			loadTodos();
 		} catch (error) {
 			console.error(error);

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { TextField } from '@mui/material';
 import PropTypes from 'prop-types';
 
-const InputWithLabel = ({ todoTitle, handleTitleChange, children }) => {
+import styles from '../styles/InputWithLabel.module.css';
+
+const InputWithLabel = ({ todoTitle, handleTitleChange }) => {
 	const inputRef = useRef(null);
 
 	useEffect(() => {
@@ -16,20 +17,16 @@ const InputWithLabel = ({ todoTitle, handleTitleChange, children }) => {
 	}, []);
 
 	return (
-		<>
-			<TextField
-				type='text'
-				name='title'
-				id='outlined-basic'
-				label={children}
-				variant='filled'
-				value={todoTitle}
-				onChange={handleTitleChange}
-				inputRef={inputRef}
-				size='small'
-				multiline
-			/>
-		</>
+		<textarea
+			value={todoTitle}
+			className={styles.textField}
+			onChange={handleTitleChange}
+			inputRef={inputRef}
+			rows='2'
+			cols='40'
+			aria-label='Enter your message'
+			required
+		/>
 	);
 };
 
