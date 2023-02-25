@@ -1,13 +1,9 @@
 import React, { useState, useContext } from 'react';
-import style from '../styles/TodoListItem.module.css';
-import { MdClose } from 'react-icons/md';
-import Checkbox from '@mui/material/Checkbox';
+import { MdClose, MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md';
 import PropTypes from 'prop-types';
-import { TodoContext } from '../context/TodoContext';
 
-const green = {
-	500: '#2fb583',
-};
+import styles from '../styles/TodoListItem.module.css';
+import { TodoContext } from '../context/TodoContext';
 
 const TodoListItem = ({ todo }) => {
 	const { updateTodo, removeTodo, isMuted, todoList, loadTodos } =
@@ -48,22 +44,28 @@ const TodoListItem = ({ todo }) => {
 
 	return (
 		<>
-			<li className={style.ListItem}>
-				<Checkbox
-					onChange={() => handleChange()}
-					checked={isCompleted}
-					style={{ padding: 0, marginRight: '8px' }}
-					inputProps={{ 'aria-label': 'controlled' }}
-					sx={{
-						'&.Mui-checked': {
-							color: green[500],
-						},
-					}}
+			<li className={styles.listItem}>
+				<input
+					type='checkbox'
+					className={styles.checkbox}
+					inputProps={{ 'aria-label': 'completed checkbox' }}
 				/>
-
+				{isCompleted ? (
+					<MdCheckBox
+						className={styles.unchecked}
+						onClick={() => handleChange()}
+						checked={isCompleted}
+					/>
+				) : (
+					<MdCheckBoxOutlineBlank
+						className={styles.checked}
+						onClick={() => handleChange()}
+						checked={isCompleted}
+					/>
+				)}
 				{todo.title}
 				<span onClick={() => removeTodo(todo.id)}>
-					<MdClose className='btn-close' />
+					<MdClose className={styles.btnClose} />
 				</span>
 			</li>
 		</>

@@ -1,0 +1,41 @@
+/* ELEMENTS (ALPHA SORT) */
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+	font-weight: bold;
+	font-size: 0.75em;
+	background-color: var(--green500);
+	padding: 5px 10px;
+	border-radius: 12px;
+	color: var(--white);
+	transition: all 150ms ease;
+	cursor: pointer;
+	border: none;
+	letter-spacing: 0.09em;
+	margin-right: 5px;
+}
+.button:hover {
+	background-color: var(--green600);
+}
+.button:active {
+	background-color: var(--green700);
+}
+.header {
+ font-family: 'Bungee Inline', cursive;
+ color: var(--darkBlue);
+ text-align: center;
+ font-size:3em;
+ padding: 0;
+}
+/* CLASSES (ALPHA SORT)*/
+.btnAdd {
+  color: var(--grey);
+  font-size: 2.5em;
+}
+.btnVolume {
+  font-size:2.5em;
+  color: var(--grey);
+}
