@@ -8,6 +8,8 @@ const TodoContextProvider = ({ children }) => {
 	const [todoTitle, setTodoTitle] = useState('');
 	const [isMuted, setIsMuted] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [sortOrder, setSortOrder] = useState('ascending');
+	const [sortType, setSortType] = useState('timeSort');
 
 	const airtableName = 'Todos';
 	const airtableView = '?view=Grid%20view';
@@ -129,6 +131,23 @@ const TodoContextProvider = ({ children }) => {
 			console.error(error);
 		}
 	};
+	// SORT TODOS ALPHABETICALLY OR BY TIME
+	const handleSort = (type) => {
+		let sorted;
+		if (type === 'alphaSort') {
+			sorted = todoList.sort((a, b) =>
+				a.title.toLowerCase().localeCompare(b.title)
+			);
+		} else if (type === 'timeSort') {
+			sorted = todoList.sort((a, b) => a.time - b.time);
+		}
+		if (sortOrder === 'descending') {
+			sorted.reverse();
+		}
+		setTodoList(sorted);
+		setSortType(type);
+		setSortOrder(sortOrder === 'ascending' ? 'descending' : 'ascending');
+	};
 
 	const contextValues = {
 		todoList,
@@ -143,6 +162,8 @@ const TodoContextProvider = ({ children }) => {
 		addTodo,
 		updateTodo,
 		removeTodo,
+		handleSort,
+		sortType,
 	};
 
 	return (

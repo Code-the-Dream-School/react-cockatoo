@@ -1,14 +1,21 @@
 import React, { useState, useContext } from 'react';
 
 import styles from '../styles/AddTodoForm.module.css';
-import { MdAdd, MdVolumeOff, MdVolumeUp } from 'react-icons/md';
+import {
+	MdAdd,
+	MdVolumeOff,
+	MdVolumeUp,
+	MdSortByAlpha,
+	MdOutlineAccessTime,
+} from 'react-icons/md';
 import PropTypes from 'prop-types';
 
-import InputWithLabel from './InputWithLabel.jsx';
-import { TodoContext } from '../context/TodoContext.jsx';
+import InputWithLabel from './InputWithLabel';
+import { TodoContext } from '../context/TodoContext';
 
 const AddTodoForm = ({ todoListName }) => {
-	const { todoList, addTodo, isMuted, setIsMuted } = useContext(TodoContext);
+	const { todoList, addTodo, isMuted, setIsMuted, handleSort } =
+		useContext(TodoContext);
 
 	const [todoTitle, setTodoTitle] = useState('');
 	const handleTitleChange = (event) => {
@@ -30,7 +37,6 @@ const AddTodoForm = ({ todoListName }) => {
 			<h1 className={styles.header}>
 				{todoList.length} . {todoListName}
 			</h1>
-
 			<form className={styles.form} onSubmit={handleAddTodo}>
 				<InputWithLabel
 					name='todoTitle'
@@ -51,6 +57,14 @@ const AddTodoForm = ({ todoListName }) => {
 					</button>
 				)}
 			</form>
+			<MdSortByAlpha
+				onClick={() => handleSort('alphaSort')}
+				className={styles.btnSort}
+			/>
+			<MdOutlineAccessTime
+				onClick={() => handleSort('timeSort')}
+				className={styles.btnSort}
+			/>
 		</>
 	);
 };

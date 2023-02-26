@@ -5,7 +5,7 @@ const TodoList = ({ todoList }) => {
 	if (todosCompleted.length > 0) {
 		return (
 			<>
-				<ol className={styles['orderedList']}>
+				<ol className={styles.orderedList}>
 					{todosCompleted.map((todo) => (
 						<li key={todo.id}>{todo.title}</li>
 					))}

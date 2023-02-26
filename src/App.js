@@ -22,7 +22,7 @@ function App() {
 								path='/'
 								element={
 									<>
-										<Link to='/new'>
+										<Link to='/completed'>
 											<MdOutlinePlaylistAddCheck className='btnCompleted' />
 										</Link>
 										<TodoContainer todoListName={'TODOS'} />
@@ -32,7 +32,7 @@ function App() {
 							{/* ROUTE /new */}
 							<Route
 								exact
-								path='/new'
+								path='/completed'
 								element={
 									<>
 										<Link to='/'>
