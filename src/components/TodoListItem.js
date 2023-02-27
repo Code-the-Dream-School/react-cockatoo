@@ -59,7 +59,7 @@ const TodoListItem = ({ todo }) => {
 						checked={isCompleted}
 					/>
 				)}
-				{todo.title}
+				<span>{todo.title}</span>
 				<span onClick={() => removeTodo(todo.id)}>
 					<MdClose className={styles.btnClose} />
 				</span>
@@ -70,11 +70,11 @@ const TodoListItem = ({ todo }) => {
 
 TodoListItem.propTypes = {
 	todo: PropTypes.object,
+	loadTodos: PropTypes.func,
 	updateTodo: PropTypes.func,
 	removeTodo: PropTypes.func,
 	isMuted: PropTypes.bool,
 	todoList: PropTypes.arrayOf(PropTypes.any),
-	loadTodos: PropTypes.func,
 };
 
 export default TodoListItem;

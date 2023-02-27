@@ -71,7 +71,7 @@ const AddTodoForm = ({ tableName }) => {
 
 AddTodoForm.propTypes = {
 	tableName: PropTypes.string,
-	todoList: PropTypes.object,
+	todoList: PropTypes.arrayOf(PropTypes.any),
 	addTodo: PropTypes.func,
 	handleSort: PropTypes.func,
 	isMuted: PropTypes.bool,
