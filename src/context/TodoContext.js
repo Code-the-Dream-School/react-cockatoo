@@ -8,12 +8,12 @@ const TodoContextProvider = ({ children }) => {
 	const [todoTitle, setTodoTitle] = useState('');
 	const [isMuted, setIsMuted] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
-	const [sortOrder, setSortOrder] = useState('ascending');
+	const [sortOrder, setSortOrder] = useState('asc');
 	const [sortType, setSortType] = useState('timeSort');
 
-	const airtableName = 'Todos';
-	const airtableView = '?view=Grid%20view';
-	const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${airtableName}/`;
+	const airTableName = 'Todos';
+	const airTableView = '?view=Grid%20view';
+	const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${airTableName}/`;
 
 	// GET TODOS FROM (AIRTABLE) DB
 	useEffect(() => {
@@ -30,7 +30,7 @@ const TodoContextProvider = ({ children }) => {
 	// LOAD TODOS
 	const loadTodos = async () => {
 		try {
-			const response = await fetch(url + airtableView, {
+			const response = await fetch(url + airTableView, {
 				headers: {
 					Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
 				},
@@ -48,6 +48,7 @@ const TodoContextProvider = ({ children }) => {
 			console.log('ERROR:', error);
 		}
 	};
+
 	// FORMAT TODOS
 	const formatTodos = (todoList) => {
 		const updatedTodoList = todoList.map((item) => {
@@ -63,8 +64,9 @@ const TodoContextProvider = ({ children }) => {
 		});
 		return updatedTodoList;
 	};
+
 	// ADD TODO
-	const addTodo = async (inputTodo) => {
+	const addTodo = async (title) => {
 		try {
 			await fetch(url, {
 				method: 'POST',
@@ -76,7 +78,7 @@ const TodoContextProvider = ({ children }) => {
 					records: [
 						{
 							fields: {
-								Title: inputTodo,
+								Title: title,
 								Completed: false,
 							},
 						},
@@ -107,7 +109,6 @@ const TodoContextProvider = ({ children }) => {
 					},
 				}),
 			});
-			console.log(todoList);
 			loadTodos();
 		} catch (error) {
 			console.error(error);
@@ -131,6 +132,7 @@ const TodoContextProvider = ({ children }) => {
 			console.error(error);
 		}
 	};
+
 	// SORT TODOS ALPHABETICALLY OR BY TIME
 	const handleSort = (type) => {
 		let sorted;
@@ -141,12 +143,12 @@ const TodoContextProvider = ({ children }) => {
 		} else if (type === 'timeSort') {
 			sorted = todoList.sort((a, b) => a.time - b.time);
 		}
-		if (sortOrder === 'descending') {
+		if (sortOrder === 'desc') {
 			sorted.reverse();
 		}
 		setTodoList(sorted);
 		setSortType(type);
-		setSortOrder(sortOrder === 'ascending' ? 'descending' : 'ascending');
+		setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
 	};
 
 	const contextValues = {

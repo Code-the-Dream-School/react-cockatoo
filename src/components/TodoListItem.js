@@ -45,11 +45,7 @@ const TodoListItem = ({ todo }) => {
 	return (
 		<>
 			<li className={styles.listItem}>
-				<input
-					type='checkbox'
-					className={styles.checkbox}
-					inputProps={{ 'aria-label': 'completed checkbox' }}
-				/>
+				<input type='checkbox' className={styles.checkbox} />
 				{isCompleted ? (
 					<MdCheckBox
 						className={styles.unchecked}
@@ -73,9 +69,9 @@ const TodoListItem = ({ todo }) => {
 };
 
 TodoListItem.propTypes = {
-	todo: PropTypes.any,
-	onUpdateTodo: PropTypes.func,
-	onRemoveTodo: PropTypes.func,
+	todo: PropTypes.object,
+	updateTodo: PropTypes.func,
+	removeTodo: PropTypes.func,
 	isMuted: PropTypes.bool,
 	todoList: PropTypes.arrayOf(PropTypes.any),
 	loadTodos: PropTypes.func,

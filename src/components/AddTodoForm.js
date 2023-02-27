@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import InputWithLabel from './InputWithLabel';
 import { TodoContext } from '../context/TodoContext';
 
-const AddTodoForm = ({ todoListName }) => {
+const AddTodoForm = ({ tableName }) => {
 	const { todoList, addTodo, isMuted, setIsMuted, handleSort } =
 		useContext(TodoContext);
 
@@ -35,14 +35,14 @@ const AddTodoForm = ({ todoListName }) => {
 	return (
 		<>
 			<h1 className={styles.header}>
-				{todoList.length} . {todoListName}
+				{todoList.length} . {tableName}
 			</h1>
 			<form className={styles.form} onSubmit={handleAddTodo}>
 				<InputWithLabel
 					name='todoTitle'
 					todoTitle={todoTitle}
 					handleTitleChange={handleTitleChange}
-				/>
+				></InputWithLabel>
 				<button className={styles.button} type='submit'>
 					<MdAdd className={styles.btnAdd} onClick={handleAddTodo} />
 				</button>
@@ -70,9 +70,10 @@ const AddTodoForm = ({ todoListName }) => {
 };
 
 AddTodoForm.propTypes = {
-	todoListName: PropTypes.string,
-	numberTodos: PropTypes.number,
-	onAddTodo: PropTypes.func,
+	tableName: PropTypes.string,
+	todoList: PropTypes.object,
+	addTodo: PropTypes.func,
+	handleSort: PropTypes.func,
 	isMuted: PropTypes.bool,
 	setIsMuted: PropTypes.func,
 };

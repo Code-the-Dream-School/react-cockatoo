@@ -1,3 +1,11 @@
+.header {
+  font-family: 'Bungee Inline', cursive;
+  color: var(--darkBlue);
+  text-align: center;
+  font-size:3em;
+  padding: 0;
+  margin-top: 45px;
+}
 .noneCompleted {
   text-align: center;
 }

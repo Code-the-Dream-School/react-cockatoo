@@ -30,7 +30,7 @@ body {
   padding: 50px 40px;
   border-radius: 50px;
   width: 70vw;
-  max-width: 550px;
+  max-width: 900px;
   min-width: 500px;
 }
 .btnBack {
@@ -55,6 +55,11 @@ body {
   padding: 10px 0 0 0;
   margin-bottom: 50px;
 }
+.todoContainer {
+  width: 60%;
+  max-width: 900px;
+  padding: 50px 40px;
+}
 .wrapper {
   animation: scroll 70s linear infinite;
   background: url("/src/assets/steve-johnson-YS0YJLU_h2k-unsplash.jpg"), var(--white);
@@ -78,12 +83,39 @@ body {
     animation: scroll 200s linear infinite;
   }
 }
-@media screen and (max-width: 500px) {
+/* Desktop viewport */
+@media screen and (max-width: 1024px) {
+  h1 {
+    font-size: 2em;
+  }
+  .todoContainer {
+    width: 60%;
+    max-width: 900px;
+    padding: 50px 40px;
+  }
+}
+/* Tablet viewport */
+@media screen and (min-width: 520px) and (max-width: 1024px) {
+  h1 {
+    font-size: .65em;
+  }
+  .todoContainer {
+    width: 80%;
+    max-width: none;
+    padding: 45px;
+  }
+}
+/* Mobile viewport */
+@media screen and (max-width: 520px) {
+  body {
+    line-height: 2em;
+  }
   h1 {
     font-size: .5em;
   }
-  .AppContainer {
-    width: 80vw;
-    padding: 40px 30px;
+  .todoContainer {
+    width: 100%;
+    max-width: none;
+    padding: 25px;
   }
 }

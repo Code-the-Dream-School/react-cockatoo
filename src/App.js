@@ -1,20 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { MdOutlinePlaylistAddCheck, MdArrowBackIosNew } from 'react-icons/md';
 
+import styles from './App.module.css';
 import TodoContainer from './components/TodoContainer';
-import CompletedTodos from './components/CompletedTodos';
-import { TodoContext } from './context/TodoContext';
 import { ConfiguredToast } from './components/ConfiguredToast';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-	const { todoList } = useContext(TodoContext);
 	return (
 		<>
 			<ConfiguredToast />
-			<div className='wrapper'>
-				<div className='appContainer'>
+			<div className={styles.wrapper}>
+				<div className={styles.appContainer}>
 					<BrowserRouter>
 						<Routes>
 							<Route
@@ -23,9 +21,14 @@ function App() {
 								element={
 									<>
 										<Link to='/completed'>
-											<MdOutlinePlaylistAddCheck className='btnCompleted' />
+											<MdOutlinePlaylistAddCheck
+												className={styles.btnCompleted}
+											/>
 										</Link>
-										<TodoContainer todoListName={'TODOS'} />
+										<TodoContainer
+											tableName={'TODOS'}
+											className={styles.todoContainer}
+										/>
 									</>
 								}
 							/>
@@ -36,10 +39,9 @@ function App() {
 								element={
 									<>
 										<Link to='/'>
-											<MdArrowBackIosNew className='btnBack' />
+											<MdArrowBackIosNew className={styles.btnBack} />
 										</Link>
-										<h1 className='headerCompleted'>Completed Todos</h1>
-										<CompletedTodos todoList={todoList} />
+										<TodoContainer tableName={'COMPLETED TODOS'} />
 									</>
 								}
 							/>
