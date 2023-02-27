@@ -15,6 +15,12 @@ localStorage.setItem('savedTodoList',JSON.stringify(todoList))
 
 function App() {
 
+  const removeTodo=(id)=>{
+    const newTodoList = todoList.filter((todo)=> todo.id !== id);
+    setTodoList(newTodoList);
+
+  }
+
   const [todoList, setTodoList] = useSemiPersistentState();
 
   const addTodo = (newTodo) => {
@@ -28,7 +34,7 @@ function App() {
       <h1>TO-DO List</h1>
       <AddTodoForm onAddTodo={addTodo} />
       <p>{addTodo}</p>
-      <TodoList todoList={todoList} />
+      <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
     </>
   );
 }

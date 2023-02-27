@@ -1,8 +1,8 @@
 import React from "react";
 
-const TodoListItem = ({ todo }) => {
+const TodoListItem = ({ todo, onRemoveTodo}) => {
   return (
-      <li key={todo.id}>{todo.title}</li>
+      <li key={todo.id}>{todo.title} <button onClick={()=>onRemoveTodo(todo.id)}>X</button></li>
   );
 };
 
