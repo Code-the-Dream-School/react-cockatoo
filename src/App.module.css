@@ -2,7 +2,7 @@
 :root {
 	--black: #2b2c3a;
 	--white: rgb(251, 251, 251);
-	--transparency: rgba(241, 245, 251, .9);
+	--transparency9: rgba(241, 245, 251, .9);
   --transparency2: rgba(241, 245, 251, .2);
   --darkBlue: #10465b;
 	--green500: #2fb583;
@@ -14,59 +14,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Bungee+Inline&display=swap');
 
-/* ELEMENTS */
-body {
-  display: flex;
-  justify-content: center;
-  margin-top: 12vh;
-  font-family: 'Raleway', sans-serif;
-  line-height: 1.35em;
-  color: var(--black);
-  background-color: var(--white);
-}
-
-/* CLASSES (ALPHA SORT)*/
-.appContainer {
-  background-color: var(--transparency);
-  z-index:99;
-  padding: 50px 40px;
-  border-radius: 50px;
-  width: 70vw;
-  max-width: 900px;
-  min-width: 500px;
-}
-.btnBack {
-  color: var(--grey2);
-  font-size: 2em;
-  position: absolute;
-  left: 45px;
-  top: 40px;
-}
-.btnCompleted {
-  color: var(--darkBlue);
-  font-size: 2.5em;
-  position: absolute;
-  right: 75px;
-  top: 55px;
-}
-.headerCompleted{
- font-family: 'Bungee Inline', cursive;
- color: var(--darkBlue);
- text-align: center;
- font-size:3em;
-  padding: 10px 0 0 0;
-  margin-bottom: 50px;
-}
-.todoContainer {
-  width: 60%;
-  max-width: 800px;
-  padding: 50px 40px;
-}
-.wrapper {
+.appBackground {
   animation: scroll 70s linear infinite;
   background: url("/src/assets/steve-johnson-YS0YJLU_h2k-unsplash.jpg"), var(--white);
-  width: 100%;
-  width: 100%;
+  width: 90%;
+  max-width: 600px;
+  height:100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,6 +27,40 @@ body {
   perspective-origin: 50% 50%;
   border-radius: 50px;
   border: 0px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  line-height: 1.35em;
+  color: var(--black);
+}
+.appContainer {
+  background-color: var(--transparency9);
+  z-index:99;
+  padding: 50px 40px;
+  border-radius: 50px;
+  width: 100%;
+  height: 100%;
+}
+.btnBack {
+  color: var(--grey2);
+  font-size: 2em;
+  position: absolute;
+  left: 45px;
+  top: 40px;
+  width: 100%;
+}
+.btnCompleted {
+  color: var(--darkBlue);
+  font-size: 3em;
+  float: right;
+  margin: 20px;
+}
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 @keyframes scroll {
    100%{
@@ -81,43 +68,37 @@ body {
   }
 }
 @media (prefers-reduced-motion) {
-  .wrapper {
+  .appBackground  {
     animation: scroll 200s linear infinite;
   }
 }
 /* Desktop viewport */
-@media screen and (max-width: 1024px) {
-  h1 {
-    font-size: 2em;
-  }
-  .todoContainer {
-    width: 60%;
-    max-width: 900px;
-    padding: 50px 40px;
+@media screen and (min-width: 1025px) {
+  .appContainer  {
+    width: 100%;
+    padding: 50px 100px;
   }
 }
 /* Tablet viewport */
-@media screen and (min-width: 520px) and (max-width: 1024px) {
-  h1 {
-    font-size: .65em;
-  }
-  .todoContainer {
-    width: 80%;
-    max-width: none;
-    padding: 45px;
+@media screen and (min-width: 521px) and (max-width: 1024px) {
+  .appBackground {
+    width: 90%;
   }
 }
 /* Mobile viewport */
 @media screen and (max-width: 520px) {
-  body {
-    line-height: 2em;
+  .btnBack {
+    color: var(--grey2);
+    font-size: 2em;
   }
-  h1 {
-    font-size: .5em;
+  .btnCompleted {
+    color: var(--darkBlue);
+    font-size: 3em;
   }
-  .todoContainer {
-    width: 100%;
-    max-width: none;
-    padding: 25px;
+  .appBackground {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0px;
   }
 }

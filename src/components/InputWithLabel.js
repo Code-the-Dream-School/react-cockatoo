@@ -15,7 +15,7 @@ const InputWithLabel = ({ todoTitle, handleTitleChange, children }) => {
 			<label htmlFor='todoTitle'>{children}</label>
 			<textarea
 				value={todoTitle}
-				className={styles.textField}
+				className={styles.textArea}
 				onChange={handleTitleChange}
 				ref={inputRef}
 				rows='2'

@@ -59,11 +59,11 @@ const AddTodoForm = ({ tableName }) => {
 			</form>
 			<MdSortByAlpha
 				onClick={() => handleSort('alphaSort')}
-				className={styles.btnSort}
+				className={styles.btnSortAlpha}
 			/>
 			<MdOutlineAccessTime
 				onClick={() => handleSort('timeSort')}
-				className={styles.btnSort}
+				className={styles.btnSortTime}
 			/>
 		</>
 	);

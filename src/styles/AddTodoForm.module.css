@@ -1,8 +1,22 @@
-/* ELEMENTS (ALPHA SORT) */
-.form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.btnAdd {
+  color: var(--grey);
+  font-size: 2.5em;
+	vertical-align: text-bottom;
+}
+.btnSortAlpha {
+	font-size: 2.5em;
+	margin: 10px 5px 0 50px;
+	color: var(--green600)
+}
+.btnSortTime{
+	font-size: 2.5em;
+	margin: 10px 5px 0 20px;
+	color: var(--green600)
+}
+.btnVolume {
+  font-size:2.5em;
+  color: var(--grey);
+	vertical-align: text-bottom;
 }
 .button {
 	font-weight: bold;
@@ -23,24 +37,39 @@
 .button:active {
 	background-color: var(--green700);
 }
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	width: 100%;
+}
 .header {
  font-family: 'Bungee Inline', cursive;
  color: var(--darkBlue);
  text-align: center;
  font-size:4em;
- padding: 0;
+ padding: 20px;
+ margin: 60px 0 0 40px;
+ white-space: nowrap;
 }
-/* CLASSES (ALPHA SORT)*/
-.btnAdd {
-  color: var(--grey);
-  font-size: 2.5em;
+
+/* Tablet viewport */
+@media screen and (min-width: 521px) and (max-width: 1024px) {
+ 	.header {
+    margin-left: 60px;
+		font-size: 4em;
+  }
 }
-.btnSort {
-	font-size: 2.5em;
-	margin: 10px 5px 0 10px;
-	color: var(--green600)
-}
-.btnVolume {
-  font-size:2.5em;
-  color: var(--grey);
+/* Mobile viewport */
+@media screen and (max-width: 520px) {
+	.btnAdd {
+		font-size: 2em;
+	}
+	.btnVolume {
+		font-size: 2em;;
+	}
+  .header {
+    margin-left: 25px;
+		font-size: 3em;
+  }
 }

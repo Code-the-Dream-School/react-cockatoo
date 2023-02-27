@@ -14,25 +14,41 @@
   content: "\2713";
   display: inline-block;
   font-size: 18px;
-  color: red;
   margin-left: 2px;
 }
-.textField {
-  background-color: var(--transparency);
-  margin: 0 20px 20px 0;
+.textArea{
+  background-color: var(--transparency9);
+  margin: 10px 20px 20px 60px;
   font-family: 'Raleway', sans-serif;
   font-size: 1.5em;
-  max-width: 350px;
   padding: 10px;
+  width: 90%;
   border: none;
-  border-bottom: 4px double var(--green500);
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+  border-bottom: 4px double var(--darkBlue);
 }
-.textField:hover {
+.textArea:hover {
   border-color: var(--green500);
 }
-.textField:focus {
+.textArea:focus {
+  outline: 2px solid var(--green500);
   border-color: var(--green600);
+  background-color: var(--white);
   box-shadow: 0 0 0 2px var(--green700);
 }
 
-
+/* Tablet viewport */
+@media screen and (min-width: 521px) and (max-width: 1024px) {
+ 	.textArea {
+    width: 100%;
+    margin: 10px 10px 0 0;
+  }
+}
+/* Mobile viewport */
+@media screen and (max-width: 520px) {
+  .textArea {
+    width: 100%;
+    margin: 10px 10px 0 0;
+  }
+}

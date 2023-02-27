@@ -10,7 +10,7 @@
 }
 .listItem span {
   padding-left: 10px;
-  max-width: 80%;
+  max-width: 75%;
 }
 .btnClose {
   vertical-align:text-bottom;
@@ -18,6 +18,7 @@
   margin-left: 10px;
 }
 .checkbox {
+  width: 40px;
   display: none;
 }
 .checked{

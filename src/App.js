@@ -12,41 +12,43 @@ function App() {
 		<>
 			<ConfiguredToast />
 			<div className={styles.wrapper}>
-				<div className={styles.appContainer}>
-					<BrowserRouter>
-						<Routes>
-							<Route
-								exact
-								path='/'
-								element={
-									<>
-										<Link to='/completed'>
-											<MdOutlinePlaylistAddCheck
-												className={styles.btnCompleted}
+				<div className={styles.appBackground}>
+					<div className={styles.appContainer}>
+						<BrowserRouter>
+							<Routes>
+								<Route
+									exact
+									path='/'
+									element={
+										<>
+											<Link to='/completed'>
+												<MdOutlinePlaylistAddCheck
+													className={styles.btnCompleted}
+												/>
+											</Link>
+											<TodoContainer
+												tableName={'TODOS'}
+												className={styles.todoContainer}
 											/>
-										</Link>
-										<TodoContainer
-											tableName={'TODOS'}
-											className={styles.todoContainer}
-										/>
-									</>
-								}
-							/>
-							{/* ROUTE /new */}
-							<Route
-								exact
-								path='/completed'
-								element={
-									<>
-										<Link to='/'>
-											<MdArrowBackIosNew className={styles.btnBack} />
-										</Link>
-										<TodoContainer tableName={'COMPLETED TODOS'} />
-									</>
-								}
-							/>
-						</Routes>
-					</BrowserRouter>
+										</>
+									}
+								/>
+								{/* ROUTE /new */}
+								<Route
+									exact
+									path='/completed'
+									element={
+										<>
+											<Link to='/'>
+												<MdArrowBackIosNew className={styles.btnBack} />
+											</Link>
+											<TodoContainer tableName={'COMPLETED TODOS'} />
+										</>
+									}
+								/>
+							</Routes>
+						</BrowserRouter>
+					</div>
 				</div>
 			</div>
 		</>
