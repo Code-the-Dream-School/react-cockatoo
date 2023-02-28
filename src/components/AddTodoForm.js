@@ -4,7 +4,6 @@ import { MdOutlinePlaylistAddCheck } from 'react-icons/md';
 
 import styles from '../styles/AddTodoForm.module.css';
 import {
-	MdAdd,
 	MdVolumeOff,
 	MdVolumeUp,
 	MdSortByAlpha,
@@ -67,7 +66,7 @@ const AddTodoForm = ({ tableName }) => {
 				</div>
 				<div className={styles.buttonsRight}>
 					<button
-						className={styles.btnAdd}
+						className={styles.button}
 						onClick={handleAddTodo}
 						type='submit'
 					>
