@@ -8,7 +8,7 @@
 	--green500: #2fb583;
 	--green600: #34916f;
 	--green700: #2e8263;
-	--grey: rgba(250, 250, 250, .5)
+	--grey: rgba(250, 250, 250, .5);
   --grey2: #7c7a7a;
 }
 
@@ -23,36 +23,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1000px;
-  perspective-origin: 50% 50%;
   border-radius: 50px;
   border: 0px;
   font-family: 'Raleway', sans-serif;
-  font-size: 1rem;
+  font-size: 1em;
   line-height: 1.35em;
   color: var(--black);
 }
 .appContainer {
   background-color: var(--transparency9);
-  z-index:99;
   padding: 50px 40px;
   border-radius: 50px;
   width: 100%;
   height: 100%;
-}
-.btnBack {
-  color: var(--grey2);
-  font-size: 2em;
-  position: absolute;
-  left: 45px;
-  top: 40px;
-  width: 100%;
-}
-.btnCompleted {
-  color: var(--darkBlue);
-  font-size: 3em;
-  float: right;
-  margin: 20px;
 }
 .wrapper {
   width: 100vw;

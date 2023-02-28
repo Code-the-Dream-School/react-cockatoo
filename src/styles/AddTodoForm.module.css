@@ -1,26 +1,7 @@
 .btnAdd {
-  color: var(--grey);
-  font-size: 2.5em;
-	vertical-align: text-bottom;
-}
-.btnSortAlpha {
-	font-size: 2.5em;
-	margin: 10px 5px 0 50px;
-	color: var(--green600)
-}
-.btnSortTime{
-	font-size: 2.5em;
-	margin: 10px 5px 0 20px;
-	color: var(--green600)
-}
-.btnVolume {
-  font-size:2.5em;
-  color: var(--grey);
-	vertical-align: text-bottom;
-}
-.button {
-	font-weight: bold;
-	font-size: 0.75em;
+	display: flex;
+	justify-content: flex-end;
+	font-size: 1em;
 	background-color: var(--green500);
 	padding: 5px 10px;
 	border-radius: 12px;
@@ -29,17 +10,46 @@
 	cursor: pointer;
 	border: none;
 	letter-spacing: 0.09em;
-	margin-right: 5px;
+	padding: 15px 10px;
 }
-.button:hover {
+.btnAdd:hover {
 	background-color: var(--green600);
 }
-.button:active {
+.btnAdd:active {
 	background-color: var(--green700);
 }
+.btnCompleted {
+  color: var(--darkBlue);
+  font-size: 3em;
+  float: right;
+  margin: 20px;
+}
+.btnSortAlpha {
+	font-size: 2.5em;
+	color: var(--green600);
+	margin-right: 20px;
+}
+.btnSortTime{
+	font-size: 2.5em;
+	color: var(--green600);
+	margin-right: 20px;
+}
+.btnVolume {
+  font-size:2.5em;
+  color: var(--grey);
+	vertical-align: text-bottom;
+	color: var(--green600);
+	margin-right: 10px;
+}
+.buttonGroup {
+	display: flex;
+	justify-content: space-between;
+}
+.buttonsLeft {
+	display: flex;
+	justify-content: flex-start;
+}
 .form {
-  display: flex;
-  justify-content: center;
   align-items: center;
 	width: 100%;
 }
@@ -63,7 +73,7 @@
 /* Mobile viewport */
 @media screen and (max-width: 520px) {
 	.btnAdd {
-		font-size: 2em;
+		font-size: 1em;
 	}
 	.btnVolume {
 		font-size: 2em;;

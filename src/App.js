@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { MdOutlinePlaylistAddCheck, MdArrowBackIosNew } from 'react-icons/md';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import styles from './App.module.css';
 import TodoContainer from './components/TodoContainer';
@@ -21,11 +20,6 @@ function App() {
 									path='/'
 									element={
 										<>
-											<Link to='/completed'>
-												<MdOutlinePlaylistAddCheck
-													className={styles.btnCompleted}
-												/>
-											</Link>
 											<TodoContainer
 												tableName={'TODOS'}
 												className={styles.todoContainer}
@@ -39,9 +33,6 @@ function App() {
 									path='/completed'
 									element={
 										<>
-											<Link to='/'>
-												<MdArrowBackIosNew className={styles.btnBack} />
-											</Link>
 											<TodoContainer tableName={'COMPLETED TODOS'} />
 										</>
 									}

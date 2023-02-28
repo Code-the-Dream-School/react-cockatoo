@@ -1,4 +1,6 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { MdOutlinePlaylistAddCheck } from 'react-icons/md';
 
 import styles from '../styles/AddTodoForm.module.css';
 import {
@@ -34,6 +36,9 @@ const AddTodoForm = ({ tableName }) => {
 
 	return (
 		<>
+			<Link to='/completed'>
+				<MdOutlinePlaylistAddCheck className={styles.btnCompleted} />
+			</Link>
 			<h1 className={styles.header}>
 				{todoList.length} . {tableName}
 			</h1>
@@ -43,28 +48,33 @@ const AddTodoForm = ({ tableName }) => {
 					todoTitle={todoTitle}
 					handleTitleChange={handleTitleChange}
 				></InputWithLabel>
-				<button className={styles.button} type='submit'>
-					<MdAdd className={styles.btnAdd} onClick={handleAddTodo} />
-				</button>
-
-				{isMuted ? (
-					<button className={styles.button} type='button' onClick={handleMute}>
-						<MdVolumeOff className={styles.btnVolume} />
-					</button>
-				) : (
-					<button className={styles.button} type='button' onClick={handleMute}>
-						<MdVolumeUp className={styles.btnVolume} />
-					</button>
-				)}
 			</form>
-			<MdSortByAlpha
-				onClick={() => handleSort('alphaSort')}
-				className={styles.btnSortAlpha}
-			/>
-			<MdOutlineAccessTime
-				onClick={() => handleSort('timeSort')}
-				className={styles.btnSortTime}
-			/>
+			<div className={styles.buttonGroup}>
+				<div className={styles.buttonsLeft}>
+					<MdSortByAlpha
+						onClick={() => handleSort('alphaSort')}
+						className={styles.btnSortAlpha}
+					/>
+					<MdOutlineAccessTime
+						onClick={() => handleSort('timeSort')}
+						className={styles.btnSortTime}
+					/>
+					{isMuted ? (
+						<MdVolumeOff onClick={handleMute} className={styles.btnVolume} />
+					) : (
+						<MdVolumeUp onClick={handleMute} className={styles.btnVolume} />
+					)}
+				</div>
+				<div className={styles.buttonsRight}>
+					<button
+						className={styles.btnAdd}
+						onClick={handleAddTodo}
+						type='submit'
+					>
+						ADD TODO
+					</button>
+				</div>
+			</div>
 		</>
 	);
 };
