@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
-import style from '../styles/TodoListItem.module.css';
-import { MdClose } from 'react-icons/md';
-import Checkbox from '@mui/material/Checkbox';
+import React, { useState, useContext } from 'react';
+import { MdClose, MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
-const green = {
-	500: '#2fb583',
-};
+import styles from '../styles/TodoListItem.module.css';
+import { TodoContext } from '../context/TodoContext';
 
-function TodoListItem({
-	todo,
-	onUpdateTodo,
-	onRemoveTodo,
-	isMuted,
-	todoList,
-	loadTodos,
-}) {
+const TodoListItem = ({ todo }) => {
+	const { updateTodo, removeTodo, isMuted, todoList, loadTodos } =
+		useContext(TodoContext);
 	const [isCompleted, setIsCompleted] = useState(todo.completed);
+
 	const numberOfTodosCompleted =
 		todoList.filter((todo) => todo.completed === true).length + 1;
 	const numberOfTodosLeft = todoList.length;
@@ -44,32 +38,47 @@ function TodoListItem({
 	const handleChange = () => {
 		setIsCompleted(!isCompleted);
 		handleCompleted();
-		onUpdateTodo(todo.title, todo.id, !isCompleted);
+		updateTodo(todo.title, todo.id, !isCompleted);
 		loadTodos();
 	};
 
 	return (
 		<>
-			<li className={style.ListItem}>
-				<Checkbox
-					onChange={() => handleChange()}
-					checked={isCompleted}
-					style={{ padding: 0, marginRight: '8px' }}
-					inputProps={{ 'aria-label': 'controlled' }}
-					sx={{
-						'&.Mui-checked': {
-							color: green[500],
-						},
-					}}
+			<li className={styles.listItem}>
+				<input
+					type='checkbox'
+					className={styles.checkbox}
+					inputProps={{ 'aria-label': 'completed checkbox' }}
 				/>
-
+				{isCompleted ? (
+					<MdCheckBox
+						className={styles.unchecked}
+						onClick={() => handleChange()}
+						checked={isCompleted}
+					/>
+				) : (
+					<MdCheckBoxOutlineBlank
+						className={styles.checked}
+						onClick={() => handleChange()}
+						checked={isCompleted}
+					/>
+				)}
 				{todo.title}
-				<span onClick={() => onRemoveTodo(todo.id)}>
-					<MdClose className='btn-close' />
+				<span onClick={() => removeTodo(todo.id)}>
+					<MdClose className={styles.btnClose} />
 				</span>
 			</li>
 		</>
 	);
-}
+};
+
+TodoListItem.propTypes = {
+	todo: PropTypes.any,
+	onUpdateTodo: PropTypes.func,
+	onRemoveTodo: PropTypes.func,
+	isMuted: PropTypes.bool,
+	todoList: PropTypes.arrayOf(PropTypes.any),
+	loadTodos: PropTypes.func,
+};
 
 export default TodoListItem;

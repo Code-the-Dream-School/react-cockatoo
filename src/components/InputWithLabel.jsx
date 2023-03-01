@@ -1,30 +1,40 @@
 import React, { useEffect, useRef } from 'react';
-import { TextField } from '@mui/material';
+import PropTypes from 'prop-types';
 
-function InputWithLabel(props) {
-	const { todoTitle, handleTitleChange, children } = props;
+import styles from '../styles/InputWithLabel.module.css';
+
+const InputWithLabel = ({ todoTitle, handleTitleChange }) => {
 	const inputRef = useRef(null);
 
 	useEffect(() => {
-		inputRef.current.focus();
-	});
+		const timeoutId = setTimeout(() => {
+			inputRef.current?.focus();
+		}, 500);
+		// Returning a cleanup function to prevent the useEffect hook from firing twice. This also stops 2nd toast error notification.
+		return () => {
+			clearTimeout(timeoutId);
+		};
+	}, []);
 
 	return (
-		<>
-			<TextField
-				type='text'
-				name='title'
-				id='outlined-basic'
-				label={children}
-				variant='filled'
-				value={todoTitle}
-				onChange={handleTitleChange}
-				ref={inputRef}
-				size='small'
-				multiline
-			/>
-		</>
+		<textarea
+			value={todoTitle}
+			className={styles.textField}
+			onChange={handleTitleChange}
+			inputRef={inputRef}
+			rows='2'
+			cols='40'
+			aria-label='Enter your message'
+			required
+		/>
 	);
-}
+};
+
+InputWithLabel.propTypes = {
+	todoTitle: PropTypes.string,
+	handleTitleChange: PropTypes.func,
+	id: PropTypes.string,
+	children: PropTypes.string,
+};
 
 export default InputWithLabel;

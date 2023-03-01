@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import InputWithLabel from './InputWithLabel';
-import Button from './Button';
-import { MdAdd, MdVolumeOff, MdVolumeUp } from 'react-icons/md';
+import React, { useState, useContext } from 'react';
 
-function AddTodoForm({
-	todoListName,
-	numberTodos,
-	onAddTodo,
-	isMuted,
-	setIsMuted,
-}) {
+import styles from '../styles/AddTodoForm.module.css';
+import { MdAdd, MdVolumeOff, MdVolumeUp } from 'react-icons/md';
+import PropTypes from 'prop-types';
+
+import InputWithLabel from './InputWithLabel.jsx';
+import { TodoContext } from '../context/TodoContext.jsx';
+
+const AddTodoForm = ({ todoListName }) => {
+	const { todoList, addTodo, isMuted, setIsMuted } = useContext(TodoContext);
+
 	const [todoTitle, setTodoTitle] = useState('');
 	const handleTitleChange = (event) => {
 		setTodoTitle(event.target.value);
@@ -17,7 +17,8 @@ function AddTodoForm({
 	const handleAddTodo = (event) => {
 		event.preventDefault();
 		if (todoTitle !== '') {
-			onAddTodo(todoTitle);
+			addTodo(todoTitle);
+			setTodoTitle('');
 		}
 	};
 	const handleMute = () => {
@@ -26,34 +27,40 @@ function AddTodoForm({
 
 	return (
 		<>
-			<h1>
-				{numberTodos} . {todoListName}
+			<h1 className={styles.header}>
+				{todoList.length} . {todoListName}
 			</h1>
 
-			<form onSubmit={handleAddTodo}>
+			<form className={styles.form} onSubmit={handleAddTodo}>
 				<InputWithLabel
-					id='todoTitle'
+					name='todoTitle'
 					todoTitle={todoTitle}
 					handleTitleChange={handleTitleChange}
-				>
-					Todo
-				</InputWithLabel>
-				<Button type='submit'>
-					<MdAdd className='btn-add' />
-				</Button>
+				/>
+				<button className={styles.button} type='submit'>
+					<MdAdd className={styles.btnAdd} onClick={handleAddTodo} />
+				</button>
 
 				{isMuted ? (
-					<Button onClick={handleMute}>
-						<MdVolumeOff className='btn-volume' />
-					</Button>
+					<button className={styles.button} type='button' onClick={handleMute}>
+						<MdVolumeOff className={styles.btnVolume} />
+					</button>
 				) : (
-					<Button onClick={handleMute}>
-						<MdVolumeUp className='btn-volume' />
-					</Button>
+					<button className={styles.button} type='button' onClick={handleMute}>
+						<MdVolumeUp className={styles.btnVolume} />
+					</button>
 				)}
 			</form>
 		</>
 	);
-}
+};
+
+AddTodoForm.propTypes = {
+	todoListName: PropTypes.string,
+	numberTodos: PropTypes.number,
+	onAddTodo: PropTypes.func,
+	isMuted: PropTypes.bool,
+	setIsMuted: PropTypes.func,
+};
 
 export default AddTodoForm;

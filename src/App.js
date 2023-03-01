@@ -1,4 +1,3 @@
-//  TODO APP : Designed to cheer for each little accomplishment we make as we progress toward our goals - like building an app. So this app cheers for you when you complete each task and celebrates with you when you complete all of your tasks.
 import React, { useContext } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { MdOutlinePlaylistAddCheck, MdArrowBackIosNew } from 'react-icons/md';
@@ -15,7 +14,7 @@ function App() {
 		<>
 			<ConfiguredToast />
 			<div className='wrapper'>
-				<div className='AppContainer'>
+				<div className='appContainer'>
 					<BrowserRouter>
 						<Routes>
 							<Route
@@ -24,7 +23,7 @@ function App() {
 								element={
 									<>
 										<Link to='/new'>
-											<MdOutlinePlaylistAddCheck className='btn-completed' />
+											<MdOutlinePlaylistAddCheck className='btnCompleted' />
 										</Link>
 										<TodoContainer todoListName={'TODOS'} />
 									</>
@@ -37,9 +36,9 @@ function App() {
 								element={
 									<>
 										<Link to='/'>
-											<MdArrowBackIosNew className='btn-back' />
+											<MdArrowBackIosNew className='btnBack' />
 										</Link>
-										<h1 className='header-completed'>Completed Todos</h1>
+										<h1 className='headerCompleted'>Completed Todos</h1>
 										<CompletedTodos todoList={todoList} />
 									</>
 								}
