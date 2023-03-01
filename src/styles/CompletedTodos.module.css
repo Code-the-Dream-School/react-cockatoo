@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .btnBack {
   color: var(--grey2);
   font-size: 2em;
@@ -23,13 +24,20 @@
 .noneCompleted {
   text-align: center;
   margin-top: 50px;
+=======
+.noneCompleted {
+  text-align: center;
+>>>>>>> main
 }
 .orderedList {
   counter-reset:item;
   line-height: 2.25em;
   font-size: 1.5em;
+<<<<<<< HEAD
   width: 95%;
   margin: 0 20px;
+=======
+>>>>>>> main
 }
 .orderedList > li {
   margin:0;

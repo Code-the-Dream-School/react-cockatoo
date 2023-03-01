@@ -17,10 +17,28 @@ const TodoContextProvider = ({ children }) => {
 	const [sortOrder, setSortOrder] = useState('asc');
 	const [sortType, setSortType] = useState('timeSort');
 
+<<<<<<< HEAD:src/context/TodoContext.js
 	const airTableName = 'Todos';
 	const airTableView = '?view=Grid%20view';
 	const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${airTableName}/`;
 	const isMounted = useRef(false);
+=======
+	const airtableName = 'Todos';
+	const airtableView = '?view=Grid%20view';
+	const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${airtableName}/`;
+
+	// GET TODOS FROM (AIRTABLE) DB
+	useEffect(() => {
+		const timeoutId = setTimeout(() => {
+			loadTodos();
+		}, 0);
+		// Returning a cleanup function to prevent the useEffect hook from firing twice. This also stops 2nd toast error notification.
+		return () => {
+			clearTimeout(timeoutId);
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+>>>>>>> main:src/context/TodoContext.jsx
 
 	// LOAD TODOS
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -110,6 +128,7 @@ const TodoContextProvider = ({ children }) => {
 					},
 				}),
 			});
+			console.log(todoList);
 			loadTodos();
 		} catch (error) {
 			console.error(error);

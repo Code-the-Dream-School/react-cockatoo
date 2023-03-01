@@ -14,6 +14,7 @@
   content: "\2713";
   display: inline-block;
   font-size: 18px;
+<<<<<<< HEAD
   margin-left: 2px;
 }
 .textArea{
@@ -52,3 +53,25 @@
     margin: 10px 10px 0 0;
   }
 }
+=======
+  color: red;
+  margin-left: 2px;
+}
+.textField {
+  background-color: var(--white);
+  margin: 0 20px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.5em;
+  max-width: 400px;
+  padding: 10px;
+}
+.textField:hover {
+  border-color: var(--green500);
+}
+.textField:focus {
+  border-color: var(--green600);
+  box-shadow: 0 0 0 2px var(--green700);
+}
+
+
+>>>>>>> main

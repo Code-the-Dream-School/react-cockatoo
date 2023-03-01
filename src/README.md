@@ -25,11 +25,7 @@ You will need the base ID which you can find by navigating to the base you set u
 
 Next, install the required packages by running the following command in the terminal:
 yarn install _or_ npm install
-Next, install the required packages by running the following command in the terminal:
-yarn install _or_ npm install
 
-You start the app by running the following command:
-yarn start _or_ npm start
 You start the app by running the following command:
 yarn start _or_ npm start
 
