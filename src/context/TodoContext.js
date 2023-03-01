@@ -1,4 +1,10 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, {
+	useState,
+	useEffect,
+	useCallback,
+	useRef,
+	createContext,
+} from 'react';
 import { toast } from 'react-toastify';
 
 const TodoContext = createContext();
@@ -14,21 +20,11 @@ const TodoContextProvider = ({ children }) => {
 	const airTableName = 'Todos';
 	const airTableView = '?view=Grid%20view';
 	const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${airTableName}/`;
-
-	// GET TODOS FROM (AIRTABLE) DB
-	useEffect(() => {
-		const timeoutId = setTimeout(() => {
-			loadTodos();
-		}, 0);
-		// Returning a cleanup function to prevent the useEffect hook from firing twice. This also stops 2nd toast error notification.
-		return () => {
-			clearTimeout(timeoutId);
-		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	const isMounted = useRef(false);
 
 	// LOAD TODOS
-	const loadTodos = async () => {
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	const loadTodos = useCallback(async () => {
 		try {
 			const response = await fetch(url + airTableView, {
 				headers: {
@@ -47,7 +43,12 @@ const TodoContextProvider = ({ children }) => {
 			);
 			console.log('ERROR:', error);
 		}
-	};
+	}, []);
+
+	// GET TODOS FROM (AIRTABLE) DB
+	useEffect(() => {
+		isMounted.current ? loadTodos() : (isMounted.current = true);
+	}, [loadTodos]);
 
 	// FORMAT TODOS
 	const formatTodos = (todoList) => {

@@ -1,16 +1,18 @@
 .btnAdd {
 	display: flex;
 	justify-content: flex-end;
+	font-family: 'Raleway', sans-serif;
 	font-size: 1em;
+	font-weight: bold;
 	background-color: var(--green500);
-	padding: 5px 10px;
 	border-radius: 12px;
 	color: var(--white);
 	transition: all 150ms ease;
 	cursor: pointer;
 	border: none;
 	letter-spacing: 0.09em;
-	padding: 15px 10px;
+	margin-left: 50px;
+	padding: 15px 100px;
 }
 .btnAdd:hover {
 	background-color: var(--green600);
@@ -35,7 +37,7 @@
 	margin-right: 20px;
 }
 .btnVolume {
-  font-size:2.5em;
+  font-size: 2.5em;
   color: var(--grey);
 	vertical-align: text-bottom;
 	color: var(--green600);

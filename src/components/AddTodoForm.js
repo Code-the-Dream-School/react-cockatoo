@@ -66,11 +66,11 @@ const AddTodoForm = ({ tableName }) => {
 				</div>
 				<div className={styles.buttonsRight}>
 					<button
-						className={styles.button}
+						className={styles.btnAdd}
 						onClick={handleAddTodo}
 						type='submit'
 					>
-						ADD TODO
+						ADD
 					</button>
 				</div>
 			</div>

@@ -6,7 +6,7 @@
 }
 .completedTodoContainer {
   background-color: var(--transparency2);
-  width: 100vw;
+  width: 100%;
   max-width: 700px;
   height: 100vh;
 }
@@ -14,7 +14,7 @@
   font-family: 'Bungee Inline', cursive;
   color: var(--darkBlue);
   text-align: center;
-  font-size:3em;
+  font-size:4em;
   padding: 0;
   margin: 80px 20px 40px 20px;
   width: 95%;
