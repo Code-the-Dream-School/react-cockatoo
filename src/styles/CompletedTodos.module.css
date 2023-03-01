@@ -1,9 +1,9 @@
-<<<<<<< HEAD
 .btnBack {
   color: var(--grey2);
   font-size: 2em;
   position: absolute;
-  top: 20px; 
+  top: 0px; 
+  margin: 3em 0 0 30px;
 }
 .completedTodoContainer {
   background-color: var(--transparency2);
@@ -24,20 +24,13 @@
 .noneCompleted {
   text-align: center;
   margin-top: 50px;
-=======
-.noneCompleted {
-  text-align: center;
->>>>>>> main
 }
 .orderedList {
   counter-reset:item;
   line-height: 2.25em;
   font-size: 1.5em;
-<<<<<<< HEAD
   width: 95%;
   margin: 0 20px;
-=======
->>>>>>> main
 }
 .orderedList > li {
   margin:0;

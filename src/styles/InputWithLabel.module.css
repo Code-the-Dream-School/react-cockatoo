@@ -14,16 +14,12 @@
   content: "\2713";
   display: inline-block;
   font-size: 18px;
-<<<<<<< HEAD
   margin-left: 2px;
 }
 .textArea{
   background-color: var(--transparency9);
-  margin: 10px 20px 20px 60px;
   font-family: 'Raleway', sans-serif;
   font-size: 1.5em;
-  padding: 10px;
-  width: 90%;
   border: none;
   border-top-right-radius: 2px;
   border-top-left-radius: 2px;
@@ -42,36 +38,13 @@
 /* Tablet viewport */
 @media screen and (min-width: 521px) and (max-width: 1024px) {
  	.textArea {
-    width: 100%;
-    margin: 10px 10px 0 0;
+    width: 90%;
   }
 }
 /* Mobile viewport */
 @media screen and (max-width: 520px) {
   .textArea {
-    width: 100%;
-    margin: 10px 10px 0 0;
+    width: 90%;
+    justify-content: center;
   }
 }
-=======
-  color: red;
-  margin-left: 2px;
-}
-.textField {
-  background-color: var(--white);
-  margin: 0 20px;
-  font-family: 'Raleway', sans-serif;
-  font-size: 1.5em;
-  max-width: 400px;
-  padding: 10px;
-}
-.textField:hover {
-  border-color: var(--green500);
-}
-.textField:focus {
-  border-color: var(--green600);
-  box-shadow: 0 0 0 2px var(--green700);
-}
-
-
->>>>>>> main
