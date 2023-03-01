@@ -45,11 +45,7 @@ const TodoListItem = ({ todo }) => {
 	return (
 		<>
 			<li className={styles.listItem}>
-				<input
-					type='checkbox'
-					className={styles.checkbox}
-					inputProps={{ 'aria-label': 'completed checkbox' }}
-				/>
+				<input type='checkbox' className={styles.checkbox} />
 				{isCompleted ? (
 					<MdCheckBox
 						className={styles.unchecked}
@@ -63,7 +59,7 @@ const TodoListItem = ({ todo }) => {
 						checked={isCompleted}
 					/>
 				)}
-				{todo.title}
+				<span>{todo.title}</span>
 				<span onClick={() => removeTodo(todo.id)}>
 					<MdClose className={styles.btnClose} />
 				</span>
@@ -73,12 +69,12 @@ const TodoListItem = ({ todo }) => {
 };
 
 TodoListItem.propTypes = {
-	todo: PropTypes.any,
-	onUpdateTodo: PropTypes.func,
-	onRemoveTodo: PropTypes.func,
+	todo: PropTypes.object,
+	loadTodos: PropTypes.func,
+	updateTodo: PropTypes.func,
+	removeTodo: PropTypes.func,
 	isMuted: PropTypes.bool,
 	todoList: PropTypes.arrayOf(PropTypes.any),
-	loadTodos: PropTypes.func,
 };
 
 export default TodoListItem;

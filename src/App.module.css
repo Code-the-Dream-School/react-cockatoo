@@ -1,0 +1,87 @@
+/* GLOBAL VARIABLES */
+:root {
+	--black: #2b2c3a;
+	--white: rgb(251, 251, 251);
+	--transparency9: rgba(241, 245, 251, .9);
+  --transparency2: rgba(241, 245, 251, .2);
+  --darkBlue: #10465b;
+	--green500: #2fb583;
+	--green600: #34916f;
+	--green700: #2e8263;
+	--grey: rgba(250, 250, 250, .5);
+  --grey2: #7c7a7a;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Bungee+Inline&display=swap');
+
+.appBackground {
+  animation: scroll 70s linear infinite;
+  background: url("/src/assets/steve-johnson-YS0YJLU_h2k-unsplash.jpg"), var(--white);
+  width: 90%;
+  max-width: 600px;
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  border: 0px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1em;
+  line-height: 1.35em;
+  color: var(--black);
+}
+.appContainer {
+  background-color: var(--transparency9);
+  padding: 50px 40px;
+  border-radius: 50px;
+  width: 100%;
+  height: 100%;
+}
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+@keyframes scroll {
+   100%{
+    background-position:0px -3000px;
+  }
+}
+@media (prefers-reduced-motion) {
+  .appBackground  {
+    animation: scroll 200s linear infinite;
+  }
+}
+/* Desktop viewport */
+@media screen and (min-width: 1025px) {
+  .appContainer  {
+    width: 100%;
+    padding: 50px 100px;
+  }
+}
+/* Tablet viewport */
+@media screen and (min-width: 521px) and (max-width: 1024px) {
+  .appBackground {
+    width: 90%;
+  }
+}
+/* Mobile viewport */
+@media screen and (max-width: 520px) {
+  .btnBack {
+    color: var(--grey2);
+    font-size: 2em;
+  }
+  .btnCompleted {
+    color: var(--darkBlue);
+    font-size: 3em;
+  }
+  .appBackground {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0px;
+  }
+}

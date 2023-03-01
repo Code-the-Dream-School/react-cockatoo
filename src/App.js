@@ -1,50 +1,45 @@
-import React, { useContext } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { MdOutlinePlaylistAddCheck, MdArrowBackIosNew } from 'react-icons/md';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import styles from './App.module.css';
 import TodoContainer from './components/TodoContainer';
-import CompletedTodos from './components/CompletedTodos';
-import { TodoContext } from './context/TodoContext';
 import { ConfiguredToast } from './components/ConfiguredToast';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-	const { todoList } = useContext(TodoContext);
 	return (
 		<>
 			<ConfiguredToast />
-			<div className='wrapper'>
-				<div className='appContainer'>
-					<BrowserRouter>
-						<Routes>
-							<Route
-								exact
-								path='/'
-								element={
-									<>
-										<Link to='/new'>
-											<MdOutlinePlaylistAddCheck className='btnCompleted' />
-										</Link>
-										<TodoContainer todoListName={'TODOS'} />
-									</>
-								}
-							/>
-							{/* ROUTE /new */}
-							<Route
-								exact
-								path='/new'
-								element={
-									<>
-										<Link to='/'>
-											<MdArrowBackIosNew className='btnBack' />
-										</Link>
-										<h1 className='headerCompleted'>Completed Todos</h1>
-										<CompletedTodos todoList={todoList} />
-									</>
-								}
-							/>
-						</Routes>
-					</BrowserRouter>
+			<div className={styles.wrapper}>
+				<div className={styles.appBackground}>
+					<div className={styles.appContainer}>
+						<BrowserRouter>
+							<Routes>
+								<Route
+									exact
+									path='/'
+									element={
+										<>
+											<TodoContainer
+												tableName={'TODOS'}
+												className={styles.todoContainer}
+											/>
+										</>
+									}
+								/>
+								{/* ROUTE /new */}
+								<Route
+									exact
+									path='/completed'
+									element={
+										<>
+											<TodoContainer tableName={'COMPLETED TODOS'} />
+										</>
+									}
+								/>
+							</Routes>
+						</BrowserRouter>
+					</div>
 				</div>
 			</div>
 		</>
