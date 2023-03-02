@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import TodoList from "./TodoList"
 import AddTodoForm from "./AddTodoForm"
-
 function useSemiPersistentState() {
   const initialTodolist = !JSON.parse(localStorage.getItem("savedTodoList")) ? [] : JSON.parse(localStorage.getItem("savedTodoList"))
   const [todoList, setTodoList] = useState(initialTodolist)
@@ -9,6 +8,13 @@ function useSemiPersistentState() {
     localStorage.setItem("savedTodoList", JSON.stringify(todoList))
   }, [todoList])
 
+
+function useSemiPersistentState() {
+  const initialTodolist = !JSON.parse(localStorage.getItem("savedTodoList")) ? [] : JSON.parse(localStorage.getItem("savedTodoList"))
+  const [todoList, setTodoList] = useState(initialTodolist)
+  useEffect(() => {
+    localStorage.setItem("savedTodoList", JSON.stringify(todoList))
+  }, [todoList])
   return [todoList, setTodoList]
 }
 function App() {
