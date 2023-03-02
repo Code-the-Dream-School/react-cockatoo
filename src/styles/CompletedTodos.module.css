@@ -9,7 +9,7 @@
   background-color: var(--transparency2);
   width: 100%;
   height: 100%;
-  padding: 10px 0px;
+  padding: 0;
 }
 .header {
   font-family: 'Bungee Inline', cursive;
@@ -17,7 +17,7 @@
   text-align: center;
   font-size:4em;
   padding: 0;
-  margin: 60px 20px 40px 20px;
+  margin: 60px 0px 40px 10px;
   width: 95%;
   line-height: 1em;
 }
@@ -53,20 +53,24 @@
 /* Tablet viewport */
 @media screen and (min-width: 521px) and (max-width: 1024px) {
  	.header {
-    margin-left: 60px;
 		font-size: 4em;
+  }
+  .orderedList {
+    font-size: 1em;
+    max-width: 500px;
+    padding: 0;
   }
 }
 /* Mobile viewport */
 @media screen and (max-width: 520px) {
-	.btnAdd {
-		font-size: 1em;
-	}
-	.btnVolume {
-		font-size: 2em;;
-	}
   .header {
-    margin-left: 40px;
 		font-size: 3em;
+    line-height: 1em;
+    margin-top: 85px;
+  }
+  .orderedList {
+    font-size: 1em;
+    line-height: 1.75em;
+    padding: 0 5px 30px 0;
   }
 }
