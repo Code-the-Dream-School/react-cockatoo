@@ -8,8 +8,8 @@
 .completedTodoContainer {
   background-color: var(--transparency2);
   width: 100%;
-  max-width: 700px;
-  height: 100vh;
+  height: 100%;
+  padding: 10px 0px;
 }
 .header {
   font-family: 'Bungee Inline', cursive;
@@ -17,9 +17,9 @@
   text-align: center;
   font-size:4em;
   padding: 0;
-  margin: 80px 20px 40px 20px;
+  margin: 60px 20px 40px 20px;
   width: 95%;
-  line-height: 1em;;
+  line-height: 1em;
 }
 .noneCompleted {
   text-align: center;
@@ -48,4 +48,25 @@
   color: #10465b;
   text-align:right;
   content:counter(item) ".";
+}
+
+/* Tablet viewport */
+@media screen and (min-width: 521px) and (max-width: 1024px) {
+ 	.header {
+    margin-left: 60px;
+		font-size: 4em;
+  }
+}
+/* Mobile viewport */
+@media screen and (max-width: 520px) {
+	.btnAdd {
+		font-size: 1em;
+	}
+	.btnVolume {
+		font-size: 2em;;
+	}
+  .header {
+    margin-left: 40px;
+		font-size: 3em;
+  }
 }

@@ -62,15 +62,14 @@
  color: var(--darkBlue);
  text-align: center;
  font-size:4em;
- margin: 80px 0 30px 40px;
+ margin: 100px 0;
  white-space: nowrap;
- padding-bottom: 10px;
+ padding: 0;
 }
 
 /* Tablet viewport */
 @media screen and (min-width: 521px) and (max-width: 1024px) {
  	.header {
-    margin-left: 60px;
 		font-size: 4em;
   }
 }
@@ -83,7 +82,6 @@
 		font-size: 2em;;
 	}
   .header {
-    margin-left: 40px;
 		font-size: 3em;
   }
 }
