@@ -1,15 +1,15 @@
-<<<<<<< HEAD
 .btnBack {
   color: var(--grey2);
   font-size: 2em;
   position: absolute;
-  top: 20px; 
+  top: 0px; 
+  margin: 3em 0 0 30px;
 }
 .completedTodoContainer {
   background-color: var(--transparency2);
   width: 100%;
-  max-width: 700px;
-  height: 100vh;
+  height: 100%;
+  padding: 10px 0px;
 }
 .header {
   font-family: 'Bungee Inline', cursive;
@@ -17,27 +17,20 @@
   text-align: center;
   font-size:4em;
   padding: 0;
-  margin: 80px 20px 40px 20px;
+  margin: 60px 20px 40px 20px;
   width: 95%;
-  line-height: 1em;;
+  line-height: 1em;
 }
 .noneCompleted {
   text-align: center;
   margin-top: 50px;
-=======
-.noneCompleted {
-  text-align: center;
->>>>>>> main
 }
 .orderedList {
   counter-reset:item;
   line-height: 2.25em;
   font-size: 1.5em;
-<<<<<<< HEAD
   width: 95%;
   margin: 0 20px;
-=======
->>>>>>> main
 }
 .orderedList > li {
   margin:0;
@@ -55,4 +48,25 @@
   color: #10465b;
   text-align:right;
   content:counter(item) ".";
+}
+
+/* Tablet viewport */
+@media screen and (min-width: 521px) and (max-width: 1024px) {
+ 	.header {
+    margin-left: 60px;
+		font-size: 4em;
+  }
+}
+/* Mobile viewport */
+@media screen and (max-width: 520px) {
+	.btnAdd {
+		font-size: 1em;
+	}
+	.btnVolume {
+		font-size: 2em;;
+	}
+  .header {
+    margin-left: 40px;
+		font-size: 3em;
+  }
 }
