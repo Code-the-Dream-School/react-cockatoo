@@ -33,7 +33,7 @@
   margin: 0 20px;
 }
 .orderedList > li {
-  margin:0;
+  margin-left: 1.5em;
   padding:0;
   text-indent:-2em;
   list-style-type:none;
