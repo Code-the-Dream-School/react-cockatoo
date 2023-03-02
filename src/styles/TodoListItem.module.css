@@ -33,3 +33,16 @@
   color: var(--green500);
   vertical-align: bottom;
 }
+/* Tablet viewport */
+@media screen and (min-width: 521px) and (max-width: 1024px) {
+  .listItem span {
+     font-size: 1em;
+  }
+}
+/* Mobile viewport */
+@media screen and (max-width: 520px) {
+  .listItem span {
+     font-size: .75em;
+     line-height: 1.5em;
+  }
+}
