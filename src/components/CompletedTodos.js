@@ -14,8 +14,8 @@ const CompletedTodos = ({ tableName }) => {
 			<Link to='/'>
 				<MdArrowBackIosNew className={styles.btnBack} />
 			</Link>
+			<h1 className={styles.header}>{tableName}</h1>
 			<div className={styles.completedTodoContainer}>
-				<h1 className={styles.header}>{tableName}</h1>
 				{todosCompleted.length > 0 ? (
 					<ol className={styles.orderedList}>
 						{todosCompleted.map((todo) => (
