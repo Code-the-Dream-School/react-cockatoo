@@ -10,7 +10,6 @@ function App() {
     useEffect(() => {
         new Promise((resolve, reject) => {
             setTimeout(() => {
-                // console.log('XXXXXXXXX')
                 resolve({
                     data: {
                         todoList: JSON.parse(localStorage.getItem('savedTodoList')),
@@ -18,7 +17,6 @@ function App() {
                 )}, 2000)
         })
         .then((result) => {
-            console.log(result)
             setTodoList(result.data.todoList)
             setIsLoading(false)
         })
