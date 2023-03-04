@@ -17,16 +17,15 @@ const TodoContextProvider = ({ children }) => {
 	const [sortOrder, setSortOrder] = useState('asc');
 	const [sortType, setSortType] = useState('timeSort');
 
-	const airTableName = 'Todos';
-	const airTableView = '?view=Grid%20view';
-	const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${airTableName}/`;
+	const AIRTABLE_TABLE_NAME = 'Todos';
+	const AIRTABLE_VIEW = '?view=Grid%20view';
+	const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}/`;
 	const isMounted = useRef(false);
 
 	// LOAD TODOS
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const loadTodos = useCallback(async () => {
 		try {
-			const response = await fetch(url + airTableView, {
+			const response = await fetch(url + AIRTABLE_VIEW, {
 				headers: {
 					Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
 				},
