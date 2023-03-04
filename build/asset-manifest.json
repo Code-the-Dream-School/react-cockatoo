@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1510b81f.css",
+    "main.js": "/static/js/main.e8ff09c2.js",
+    "static/media/steve-johnson-YS0YJLU_h2k-unsplash.jpg": "/static/media/steve-johnson-YS0YJLU_h2k-unsplash.58d8848758691af9f36d.jpg",
+    "index.html": "/index.html",
+    "main.1510b81f.css.map": "/static/css/main.1510b81f.css.map",
+    "main.e8ff09c2.js.map": "/static/js/main.e8ff09c2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1510b81f.css",
+    "static/js/main.e8ff09c2.js"
+  ]
+}
