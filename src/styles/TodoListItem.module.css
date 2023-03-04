@@ -4,6 +4,7 @@
   padding-bottom: 15px;
   display: flex;
   width: 100%;
+  max-width: 700px;
   align-items: top;
   line-height: 1.5em;
 }

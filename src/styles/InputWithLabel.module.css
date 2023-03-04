@@ -24,7 +24,6 @@
   border-top-right-radius: 2px;
   border-top-left-radius: 2px;
   border-bottom: 4px double var(--darkBlue);
-  padding: 10px;
 }
 .textArea:hover {
   border-color: var(--green500);
@@ -45,8 +44,7 @@
 /* Mobile viewport */
 @media screen and (max-width: 520px) {
   .textArea {
-    width: 80%;
-    max-width: 500px;
+    width: 90%;
     justify-content: center;
   }
 }

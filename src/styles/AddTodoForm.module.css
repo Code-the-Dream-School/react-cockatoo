@@ -61,19 +61,25 @@
  font-family: 'Bungee Inline', cursive;
  color: var(--darkBlue);
  text-align: center;
- font-size: 5em;
+ font-size:4em;
  margin: 100px 0;
  white-space: nowrap;
  padding: 0;
 }
 
+/* Tablet viewport */
+@media screen and (min-width: 521px) and (max-width: 1024px) {
+ 	.header {
+		font-size: 4em;
+  }
+}
 /* Mobile viewport */
 @media screen and (max-width: 520px) {
 	.btnAdd {
 		font-size: 1em;
 	}
 	.btnVolume {
-		font-size: 2em;
+		font-size: 2em;;
 	}
   .header {
 		font-size: 3em;
