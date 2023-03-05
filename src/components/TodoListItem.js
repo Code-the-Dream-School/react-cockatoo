@@ -9,12 +9,14 @@ const TodoListItem = ({ todo }) => {
 	const { updateTodo, removeTodo, isMuted, todoList, loadTodos } =
 		useContext(TodoContext);
 	const [isCompleted, setIsCompleted] = useState(todo.completed);
+	const [isEditing, setIsEditing] = useState(false);
+	const [todoTitle, setTodoTitle] = useState(todo.title);
 
 	const numberOfTodosCompleted =
 		todoList.filter((todo) => todo.completed === true).length + 1;
 	const numberOfTodosLeft = todoList.length;
 
-	const handleCompleted = () => {
+	const cheer = () => {
 		//PLAY SOUND ON COMPLETION OF ALL TODOS
 		if (
 			(!todo.completed && numberOfTodosLeft === 1 && !isMuted) ||
@@ -34,12 +36,28 @@ const TodoListItem = ({ todo }) => {
 		}
 		return;
 	};
-
-	const handleChange = () => {
+	const handleCompleted = () => {
 		setIsCompleted(!isCompleted);
-		handleCompleted();
+		cheer();
 		updateTodo(todo.title, todo.id, !isCompleted);
 		loadTodos();
+	};
+
+	const handleEdit = () => {
+		setIsEditing(true);
+	};
+
+	const editTodo = (id) => {
+		const todoToEdit = todoList.find((todo) => todo.id === id);
+		if (todoTitle !== '') {
+			updateTodo(todoTitle, todoToEdit.id, todoToEdit.completed);
+			setIsEditing(false);
+		}
+	};
+
+	const handleTitleChange = (event) => {
+		event.preventDefault();
+		setTodoTitle(event.target.value);
 	};
 
 	return (
@@ -49,17 +67,37 @@ const TodoListItem = ({ todo }) => {
 				{isCompleted ? (
 					<MdCheckBox
 						className={styles.unchecked}
-						onClick={() => handleChange()}
+						onClick={() => handleCompleted()}
 						checked={isCompleted}
 					/>
 				) : (
 					<MdCheckBoxOutlineBlank
 						className={styles.checked}
-						onClick={() => handleChange()}
+						onClick={() => handleCompleted()}
 						checked={isCompleted}
 					/>
 				)}
-				<span>{todo.title}</span>
+				{!isEditing ? (
+					<span onClick={() => handleEdit()}>{todoTitle}</span>
+				) : (
+					<>
+						<input
+							autoFocus
+							onFocus={(e) => e.currentTarget.select()}
+							id={todo.id}
+							className={styles.textEdit}
+							value={todoTitle}
+							onChange={handleTitleChange}
+						/>
+						<button
+							className={styles.btnEdit}
+							onClick={() => editTodo(todo.id)}
+							type='submit'
+						>
+							UPDATE
+						</button>
+					</>
+				)}
 				<span onClick={() => removeTodo(todo.id)}>
 					<MdClose className={styles.btnClose} />
 				</span>

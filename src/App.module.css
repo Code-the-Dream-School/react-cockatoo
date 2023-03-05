@@ -34,8 +34,10 @@
 .appContainer {
   background-color: var(--transparency9);
   border-radius: 50px;
+  padding-bottom: 100px;
   width: 100%;
   max-width: 600px;
+  min-height: 700px;
 }
 .wrapper {
   width: 100vw;

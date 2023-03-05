@@ -16,6 +16,15 @@
   margin-top: 10px;
   margin-left: 10px;
 }
+.btnEdit {
+  margin-left: 10px;
+  background-color: var(--green500);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  font-size: .75em;
+  letter-spacing: .02em;
+}
 .checkbox {
   width: 40px;
   display: none;
@@ -25,6 +34,18 @@
   font-size: 1.5em;
   color: var(--green500);
   vertical-align: bottom;
+}
+.textEdit {
+  font-size: .95em;
+  border: none;
+  border-radius: 5px;
+  padding: 0 10px;
+  color: var(--black);
+}
+.textEdit:focus {
+  outline: 2px solid var(--green500);
+  border-color: var(--green600);
+  box-shadow: 0 0 0 2px var(--green700);
 }
 .unchecked{
   width: 40px;

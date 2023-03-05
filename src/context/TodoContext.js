@@ -109,7 +109,6 @@ const TodoContextProvider = ({ children }) => {
 					},
 				}),
 			});
-			console.log(todoList);
 			loadTodos();
 		} catch (error) {
 			console.error(error);

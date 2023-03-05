@@ -4,6 +4,7 @@
   margin: 25px 20px 20px 0;
   padding: 0 40px;
   align-items: left;
+  min-height: 600px;
 }
 /* Tablet viewport */
 @media screen and (min-width: 521px) and (max-width: 1024px) {
