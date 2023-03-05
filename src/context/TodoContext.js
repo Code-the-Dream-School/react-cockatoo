@@ -20,7 +20,7 @@ const TodoContextProvider = ({ children }) => {
 	const AIRTABLE_TABLE_NAME = 'Todos';
 	const AIRTABLE_VIEW = '?view=Grid%20view';
 	const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}/`;
-	const isMounted = useRef(false);
+	// const isMounted = useRef(false);
 
 	// LOAD TODOS
 	const loadTodos = useCallback(async () => {
@@ -45,8 +45,11 @@ const TodoContextProvider = ({ children }) => {
 	}, [url]);
 
 	// GET TODOS FROM (AIRTABLE) DB
+	// useEffect(() => {
+	// 	isMounted.current ? loadTodos() : (isMounted.current = true);
+	// }, [loadTodos]);
 	useEffect(() => {
-		isMounted.current ? loadTodos() : (isMounted.current = true);
+		loadTodos();
 	}, [loadTodos]);
 
 	// FORMAT TODOS
