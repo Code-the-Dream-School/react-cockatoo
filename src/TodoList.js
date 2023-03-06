@@ -16,15 +16,25 @@ import TodoListItem from "./TodoListItem";
 //     }
 //   ]
 // Add props as a parameter to the TodoList functional component
-export default function TodoList({ todoList }) {
+function TodoList({ onRemoveTodo, todoList }) {
   return (
     <ul>
-      {todoList.map(function (item) {
-        return <TodoListItem key={item.id} title={item.title} />;
+      {
+        todoList.map(function (todo) {
+          return (
+            <TodoListItem
+              onRemoveTodo={onRemoveTodo}
+              key={todo.id}
+              title={todo.title}
+              id={todo.id}
+            />
+          );
+        })
         //         Inside the map() method, use the TodoListItem component
         //  Pass key as a prop equal to the id of the todo object
         //  Pass todo as a prop
-      })}
+      }
     </ul>
   );
 }
+export default TodoList;

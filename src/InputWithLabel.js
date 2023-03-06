@@ -17,8 +17,6 @@ function InputWithLabel(props) {
         type="text"
         value={props.todoTitle}
         onChange={props.handleTitleChange}
-        // Add Auto-Focus to Input
-        // autoFocus
       ></input>
     </>
   );

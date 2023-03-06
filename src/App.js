@@ -60,6 +60,11 @@ function App() {
   function addTodo(newTodo) {
     setTodoList([...todoList, newTodo]);
   }
+  const removeTodo = (id) => {
+    const newTodoList = todoList.filter((todo) => todo.id !== id);
+    setTodoList(newTodoList);
+  };
+
   return (
     <>
       <h1>Todo List</h1>
@@ -74,10 +79,8 @@ function App() {
       {isLoading === true ? (
         <p>Loading...</p>
       ) : (
-        <TodoList todoList={todoList} />
+        <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
       )}
-
-      {/* Below the <AddTodoForm /> component, add a paragraph element that displays the value of newTodo variable */}
     </>
   );
 }
