@@ -24,7 +24,7 @@ function App() {
             setIsLoading(false)
         })
         .catch((error) => console.warn(error));
-    }, [isLoading]);
+    }, []);
 
     useEffect(() => {
         if (!isLoading) {
