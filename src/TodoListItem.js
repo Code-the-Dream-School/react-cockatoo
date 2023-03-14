@@ -1,7 +1,6 @@
 import React from 'react';
 
 function TodoListItem(props) {
-    console.log('props: ' + JSON.stringify(props))
     return (
         <li>
             {props.title}
