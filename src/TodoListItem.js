@@ -1,9 +1,10 @@
 import React from 'react';
 
 function TodoListItem(props) {
+    console.log('props: ' + JSON.stringify(props))
     return (
         <li>
-            {props.todo.title}
+            {props.title}
             <button type="button" onClick={(e) => props.onRemoveTodo(props.todo.id, e)}>Remove</button>
         </li>
     );
