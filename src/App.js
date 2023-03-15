@@ -1,7 +1,6 @@
 import React from "react";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
-// import react from "react";
 
 // create custom hook
 // function useSemiPersistentState() {
@@ -18,26 +17,33 @@ import AddTodoForm from "./AddTodoForm";
 //   }, [todoList]);
 
 //   return [todoList, setTodoList];
+
 // }
+
+// import {
+//   REACT_APP_AIRTABLE_BASE_ID,
+//   REACT_APP_AIRTABLE_API_KEY,
+// } from "./.env.local";
+
+const API_ENDPOINT = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default/`;
 
 function App() {
   const [todoList, setTodoList] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+
   React.useEffect(() => {
-    new Promise((resolve, reject) => {
-      setTimeout(
-        () =>
-          resolve({
-            data: {
-              todoList: JSON.parse(localStorage.getItem("savedTodoList")) || [],
-            },
-          }),
-        2000
-      );
-    }).then((result) => {
-      setTodoList(result.data.todoList);
-      setIsLoading(false);
-    });
+    fetch(`${API_ENDPOINT}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`,
+      },
+    })
+      .then((response) => response.json())
+
+      .then((result) => {
+        setTodoList(result.records);
+        setIsLoading(false);
+      });
   }, []);
   React.useEffect(() => {
     if (isLoading === false) {

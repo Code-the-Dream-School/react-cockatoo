@@ -1,20 +1,6 @@
 import React from "react";
 import TodoListItem from "./TodoListItem";
 
-// const todoList = [
-//     {
-//       id: 1,
-//       title: "Read the book",
-//     },
-//     {
-//       id: 2,
-//       title: "Watch video",
-//     },
-//     {
-//       id: 3,
-//       title: "Complete assignment",
-//     }
-//   ]
 // Add props as a parameter to the TodoList functional component
 function TodoList({ onRemoveTodo, todoList }) {
   return (
@@ -25,7 +11,7 @@ function TodoList({ onRemoveTodo, todoList }) {
             <TodoListItem
               onRemoveTodo={onRemoveTodo}
               key={todo.id}
-              title={todo.title}
+              title={todo.fields.Title}
               id={todo.id}
             />
           );
