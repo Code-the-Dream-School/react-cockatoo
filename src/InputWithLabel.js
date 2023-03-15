@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 
-// Move label and input JSX from AddTodoForm.js to InputWithLabel.js
 function InputWithLabel({
     todoTitle, 
     handleTitleChange,
@@ -22,8 +21,7 @@ function InputWithLabel({
                     value={todoTitle} 
                     onChange={handleTitleChange} 
                     type="type"
-                    name="title"
-                    //autoFocus      
+                    name="title"      
                 >
                     
                 </input>
