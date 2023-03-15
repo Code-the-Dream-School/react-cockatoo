@@ -5,21 +5,22 @@ import { useState, useEffect } from "react";
 
 function App() {
 
+  const API_ENDPOINT = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Tittle/`;
+
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(
-          {
-            data: {todoList: JSON.parse(localStorage.getItem("savedTodoList")) || []}
-        } 
-        );
-      }, 2000);
-    }).then((result) => {
+    fetch(`${API_ENDPOINT}`, {
+      method: "GET",
+      headers:{
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_KEY}`
+      },
+    })
+    .then((response)=>response.json())
+    .then((result) => {
 
-      setTodoList([...result.data.todoList]);
+      setTodoList([...result.records]);
       setIsLoading(false);
     });
   }, []);
