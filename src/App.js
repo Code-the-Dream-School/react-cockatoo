@@ -4,9 +4,9 @@ import AddTodoForm from "./AddTodoForm";
 import { useState, useEffect } from "react";
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
-function App() {
+const API_ENDPOINT = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Tittle/`;
 
-  const API_ENDPOINT = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Tittle/`;
+function App() {
 
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
