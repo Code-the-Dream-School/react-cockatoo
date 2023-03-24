@@ -2,6 +2,7 @@ import "./App.css";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import { useState, useEffect } from "react";
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App() {
 
@@ -22,8 +23,10 @@ function App() {
 
       setTodoList([...result.records]);
       setIsLoading(false);
-    });
-  }, []);
+    })
+    
+  .catch((error) => console.error(error)); 
+},[]);
 
   useEffect(() => {
     if(!isLoading){
@@ -41,7 +44,11 @@ function App() {
   };
 
   return (
-    <>
+    <BrowserRouter>
+    <Routes>
+      <Route path={"/"}
+      element={
+       <>
       <h1>TO-DO List</h1>
       <AddTodoForm onAddTodo={addTodo} />
       <p>{addTodo}</p>
@@ -50,7 +57,12 @@ function App() {
       ) : (
         <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
       )}
-    </>
+      </>
+    }
+      />
+      <Route path={"/new"} element={<h1>New Todo List</h1>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
