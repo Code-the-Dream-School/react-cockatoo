@@ -4,7 +4,7 @@ import AddTodoForm from "./AddTodoForm";
 import TodoList from "./TodoList";
 import { FiArrowRight } from "react-icons/fi";
 import LoadIcon from "./LoadIcon";
-import "../index.css";
+import  style from './TodoApp.module.css';
 
 const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`;
 
@@ -51,14 +51,14 @@ function TodoApp() {
     //update from <div> element  to fragment <></>
     <>
       <header>
-        <h1>Todo List</h1>
+        <h1 className={style.header}>Todo List</h1>
       </header>
       <AddTodoForm onAddTodo={addTodo} />
       {isLoading && <LoadIcon />}
       <TodoList onRemoveTodo={removeTodo} todos={todoList} />
       <br />
       <button>
-        <Link className="links" to={"/new"}>
+        <Link className={style.links} to={"/new"}>
           New <FiArrowRight />
         </Link>
       </button>
