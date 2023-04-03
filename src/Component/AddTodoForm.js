@@ -16,7 +16,8 @@ function AddTodoForm(props) {
     todoTitle.trim() === ""
       ? alert("Please enter a todo title")
       : onAddTodo({ title: todoTitle, id: Date.now() });
-    e.target.title.value = "";
+      console.log(todoTitle);
+  setTodoTitle("");
   };
 
   return (
