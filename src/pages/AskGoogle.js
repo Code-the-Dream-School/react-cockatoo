@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import style from "../TodoListItem.module.css";
 
 function AskGoogle(props) {
   return (
-    <div>
-      <h1>Ask Google</h1>
-      <button>
+    <div className={style.askGoogle}>
+      <h2>Ask Google</h2>
+      <button className={style.askGoogle}>
         <Link to="https://www.google.com">Google</Link>
       </button>
     </div>

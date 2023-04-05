@@ -1,10 +1,11 @@
 import React from "react";
 import TodoListItem from "./TodoListItem";
+import style from "./TodoListItem.module.css";
 
 // Add props as a parameter to the TodoList functional component
 function TodoList({ onRemoveTodo, todoList }) {
   return (
-    <ul>
+    <ul className={style.todoList}>
       {
         todoList.map(function (todo) {
           return (

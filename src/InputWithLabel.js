@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+//import style from "./TodoListItem.module.css";
+
 //Create Reusable Input with Label Component
 
 function InputWithLabel(props) {
   //input element is re-focused automatically!!!
-  const inputRef = React.useRef();
-  React.useEffect(() => {
+  const inputRef = useRef();
+  useEffect(() => {
     inputRef.current.focus();
   });
   return (

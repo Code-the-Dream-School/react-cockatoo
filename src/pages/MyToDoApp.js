@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TodoList from "../TodoList";
 import AddTodoForm from "../AddTodoForm";
+import style from "../TodoListItem.module.css";
 
 // create custom hook
 // function useSemiPersistentState() {
@@ -23,10 +24,10 @@ import AddTodoForm from "../AddTodoForm";
 const API_ENDPOINT = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default/`;
 
 function MyToDoApp() {
-  const [todoList, setTodoList] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [todoList, setTodoList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch(`${API_ENDPOINT}`, {
       method: "GET",
       headers: {
@@ -40,7 +41,7 @@ function MyToDoApp() {
         setIsLoading(false);
       });
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     if (isLoading === false) {
       localStorage.setItem("savedTodoList", JSON.stringify(todoList));
     }
@@ -67,20 +68,23 @@ function MyToDoApp() {
   };
 
   return (
-    <>
-      <h1>Todo List</h1>
+    <div className={style.mainContainer}>
+      <div className={style.todoInput}>
+        <h1>Todo List</h1>
 
-      <AddTodoForm onAddTodo={addTodo} />
-      {/* Pass setNewTodo as a callback handler prop named onAddTodo to the AddTodoForm component */}
+        <AddTodoForm onAddTodo={addTodo} />
+        {/* Pass setNewTodo as a callback handler prop named onAddTodo to the AddTodoForm component */}
 
-      {/* Pass todoList state as a prop named todoList to the TodoList component */}
-
-      {isLoading === true ? (
-        <p>Loading...</p>
-      ) : (
-        <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
-      )}
-    </>
+        {/* Pass todoList state as a prop named todoList to the TodoList component */}
+      </div>
+      <div className={style.loading}>
+        {isLoading === true ? (
+          <p>Loading...</p>
+        ) : (
+          <TodoList onRemoveTodo={removeTodo} todoList={todoList} />
+        )}
+      </div>
+    </div>
   );
 }
 

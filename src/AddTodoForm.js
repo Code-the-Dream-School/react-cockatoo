@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import InputWithLabel from "./InputWithLabel";
+import style from "./TodoListItem.module.css";
 
 // update props to use destructuring
 const AddTodoForm = ({ onAddTodo }) => {
   // Add props as a parameter in the AddTodoForm function
 
   // Create new state variable named todoTitle with setter setTodoTitle
-  const [todoTitle, setTodoTitle] = React.useState("");
+  const [todoTitle, setTodoTitle] = useState("");
 
   function handleTitleChange(event) {
     // retrieve the input value from the event object and store in variable named newTodoTitle
@@ -40,14 +41,19 @@ const AddTodoForm = ({ onAddTodo }) => {
   /* Add onChange prop equal to handleTitleChange function reference (we will declare this function in the next step) */
   return (
     <form onSubmit={handleAddTodo}>
-      <InputWithLabel
-        todoTitle={todoTitle}
-        handleTitleChange={handleTitleChange}
-        children
-      >
-        <label htmlFor="todoTitle">Title</label>
-      </InputWithLabel>
-      <button type="submit">Add</button>
+      <label className={style.label} htmlFor="todoTitle">
+        Title
+      </label>
+      <div className={style.inputGroupe}>
+        <InputWithLabel
+          todoTitle={todoTitle}
+          handleTitleChange={handleTitleChange}
+          children
+        ></InputWithLabel>
+        <button className={style.addButton} type="submit">
+          Add
+        </button>
+      </div>
     </form>
   );
 };
