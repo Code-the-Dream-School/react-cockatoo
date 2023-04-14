@@ -6,15 +6,21 @@ function App() {
   const initialTodolist = !JSON.parse(localStorage.getItem("savedTodoList")) ? [] : JSON.parse(localStorage.getItem("savedTodoList"))
   const [todoList, setTodoList] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY
+  const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default`
+  const HEADERS = {
+    Authorization: `Bearer ${API_KEY}`,
+  }
   useEffect(() => {
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({ data: { todoList: initialTodolist } })
-      }, 2000)
-    }).then((result) => {
-      setTodoList(result.data.todoList)
-      setIsLoading(false)
+    fetch(url, {
+      method: "GET",
+      headers: HEADERS,
     })
+      .then((response) => response.json())
+      .then((result) => {
+        setTodoList(result.records)
+        setIsLoading(false)
+      })
   }, [])
   useEffect(() => {
     if (!isLoading) {
