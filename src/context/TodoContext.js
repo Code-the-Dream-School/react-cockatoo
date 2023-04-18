@@ -14,6 +14,7 @@ const TodoContextProvider = ({ children }) => {
 	const [todoTitle, setTodoTitle] = useState('');
 	const [isMuted, setIsMuted] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [isDarkMode, setIsDarkMode] = useState(false);
 	const [sortOrder, setSortOrder] = useState('asc');
 	const [sortType, setSortType] = useState('timeSort');
 
@@ -150,13 +151,19 @@ const TodoContextProvider = ({ children }) => {
 		setSortType(type);
 		setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
 	};
+	// TOGGLE DARK/LIGHT MODE
+	useEffect(() => {
+		document.documentElement.dataset.theme = isDarkMode ? 'dark' : 'light';
+	}, [isDarkMode]);
 
 	const contextValues = {
 		todoList,
 		todoTitle,
 		isMuted,
 		isLoading,
+		isDarkMode,
 		setIsMuted,
+		setIsDarkMode,
 		setTodoList,
 		setTodoTitle,
 		loadTodos,

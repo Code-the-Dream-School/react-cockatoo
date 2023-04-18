@@ -1,6 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { MdOutlinePlaylistAddCheck } from 'react-icons/md';
+import {
+	MdOutlinePlaylistAddCheck,
+	MdDarkMode,
+	MdOutlineLightMode,
+} from 'react-icons/md';
 
 import styles from '../styles/AddTodoForm.module.css';
 import {
@@ -15,8 +19,15 @@ import InputWithLabel from './InputWithLabel';
 import { TodoContext } from '../context/TodoContext';
 
 const AddTodoForm = ({ tableName }) => {
-	const { todoList, addTodo, isMuted, setIsMuted, handleSort } =
-		useContext(TodoContext);
+	const {
+		todoList,
+		addTodo,
+		isMuted,
+		isDarkMode,
+		setIsMuted,
+		setIsDarkMode,
+		handleSort,
+	} = useContext(TodoContext);
 
 	const [todoTitle, setTodoTitle] = useState('');
 	const handleTitleChange = (event) => {
@@ -58,6 +69,17 @@ const AddTodoForm = ({ tableName }) => {
 						onClick={() => handleSort('timeSort')}
 						className={styles.btnSortTime}
 					/>
+					{isDarkMode ? (
+						<MdDarkMode
+							onClick={() => setIsDarkMode(!isDarkMode)}
+							className={styles.btnDarkMode}
+						/>
+					) : (
+						<MdOutlineLightMode
+							onClick={() => setIsDarkMode(!isDarkMode)}
+							className={styles.btnDarkMode}
+						/>
+					)}
 					{isMuted ? (
 						<MdVolumeOff onClick={handleMute} className={styles.btnVolume} />
 					) : (

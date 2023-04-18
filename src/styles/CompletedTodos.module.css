@@ -1,3 +1,13 @@
+:root {
+  --fontColor: var(--darkBlue);
+  --containerColor: var(--transparency9);
+}
+/* DARK THEME */
+:root[data-theme="dark"] {
+  --fontColor: #fff;
+  --containerColor: var(--transparency2);
+}
+
 .btnBack {
   color: var(--grey2);
   font-size: 2em;
@@ -6,36 +16,36 @@
   margin: 3em 0 0 20px;
 }
 .completedTodoContainer {
-  background-color: var(--transparency2);
   width: 90vw;
   height: fit-content;
   max-width: 600px;
   min-height: 700px;
   padding-bottom: 100px;
   margin-bottom: 20px;
-  
 }
 .header {
   font-family: 'Bungee Inline', cursive;
-  color: var(--darkBlue);
+  color: var(--fontColor);
   text-align: center;
   font-size:4em;
   padding: 0;
-  margin: 80px 0px 40px 0px;
+  margin: 80px 0px 40px 15px;
   width: 95%;
   line-height: 1em;
 }
 .noneCompleted {
   text-align: center;
   margin-top: 50px;
-  font-size: 1.5em;
+  font-size: 2em;
+  color: var(--fontColor);
 }
 .orderedList {
   counter-reset:item;
   line-height: 2.25em;
-  font-size: 1.5em;
+  font-size: 2em;
+  color: var(--fontColor);
   width: 90%;
-  margin-left: 20px;
+  margin-left: 70px;
 }
 .orderedList > li {
   padding:0;
@@ -48,8 +58,8 @@
   width:0.5em;
   padding-right:0.5em;
   font-weight:bold;
-  font-size: 1.5em ;
-  color: #10465b;
+  font-size: 2em ;
+  color: var(--fontColor);
   text-align:right;
   content:counter(item) ".";
 }
@@ -60,7 +70,7 @@
     padding: 0 0 0 20px;
   }
   .orderedList {
-    font-size: 1em;
+    font-size: 1.5em;
     max-width: 500px;
     padding: 0 0 15px 0;
     margin: 0;

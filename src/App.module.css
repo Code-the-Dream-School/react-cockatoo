@@ -10,13 +10,29 @@
 	--green700: #2e8263;
 	--grey: rgba(250, 250, 250, .5);
   --grey2: #7c7a7a;
+  --backgroundColor: var(--white);
+  --background: url("/src/assets/steve-johnson-YS0YJLU_h2k-unsplash.jpg"), var(--white);
+  --containerColor: var(--transparency9);
+  --border: 4px solid hsla(0,0%,100%,.5);
+}
+
+/* DARK THEME */
+:root[data-theme="dark"] {
+  --containerColor: var(--transparency2);
+  --background: url("/src/assets/steve-johnson-YS0YJLU_h2k-unsplash_inv.jpg");
+  --backgroundColor: var(--black);
+  --border: 2px solid hsla(0,0%,100%,.1);
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Bungee+Inline&display=swap');
 
+body {
+  background-color: var(--backgroundColor);
+}
+
 .appBackground {
   animation: scroll 70s linear infinite;
-  background: url("/src/assets/steve-johnson-YS0YJLU_h2k-unsplash.jpg"), var(--white);
+  background: var(--background);
   width: 100%;
   max-width: 700px;
   height: fit-content;
@@ -24,7 +40,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 50px;
-  border: 0px;
+  border: var(--border);
   font-family: 'Raleway', sans-serif;
   font-size: 1em;
   line-height: 1.35em;
@@ -32,7 +48,7 @@
   margin: 50px 0;
 }
 .appContainer {
-  background-color: var(--transparency9);
+  background-color: var(--containerColor);
   border-radius: 50px;
   padding-bottom: 100px;
   width: 100%;
@@ -42,7 +58,7 @@
 .wrapper {
   width: 100vw;
   height: 100vh;
-  background-color: none;
+  background-color: var(--backgroundColor);
   display: flex;
   flex-direction: row;
   justify-content: center;

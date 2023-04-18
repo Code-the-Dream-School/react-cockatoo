@@ -1,3 +1,13 @@
+/* LIGHT THEME */
+:root {
+--headerColor: var(--darkBlue);
+--buttonColor: var(--darkBlue);
+}
+/* DARK THEME */
+:root[data-theme="dark"] {
+--headerColor: #fff;
+--buttonColor: var(--white);
+}
 .btnAdd {
 	display: flex;
 	justify-content: flex-end;
@@ -20,10 +30,16 @@
 	background-color: var(--green700);
 }
 .btnCompleted {
-  color: var(--darkBlue);
+  color: var(--buttonColor);
   font-size: 3em;
   float: right;
   margin: 20px 30px 20px 0px;
+}
+.btnDarkMode {
+	font-size: 2.5em;
+	vertical-align: text-bottom;
+	color: var(--green600);
+	margin-right: 20px;
 }
 .btnSortAlpha {
 	font-size: 2.5em;
@@ -37,7 +53,6 @@
 }
 .btnVolume {
   font-size: 2.5em;
-  color: var(--grey);
 	vertical-align: text-bottom;
 	color: var(--green600);
 	margin-right: 10px;
@@ -59,7 +74,7 @@
 }
 .header {
  font-family: 'Bungee Inline', cursive;
- color: var(--darkBlue);
+ color: var(--headerColor);
  text-align: center;
  font-size: 5em;
  margin: 100px 0;
@@ -76,7 +91,7 @@
 		font-size: 2em;
 	}
   .header {
-		font-size: 3em;
+		font-size: 4em;
 		margin: 100px 0 40px 0;
   }
 }
