@@ -6,7 +6,8 @@ import { FiArrowRight } from "react-icons/fi";
 import LoadIcon from "./LoadIcon";
 import  style from './TodoApp.module.css';
 
-const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view`;
+const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?view=Grid%20view&sort[0][field]=Title&sort[0][direction]=asc`;
+// const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/Default?sort[0][filed]=Title&sort[0][direction]=asc`;
 
 function TodoApp() {
   const [todoList, setTodoList] = useState([]);
