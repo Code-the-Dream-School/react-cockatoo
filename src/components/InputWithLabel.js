@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+
 //import style from "./TodoListItem.module.css";
 
 //Create Reusable Input with Label Component
@@ -17,12 +19,18 @@ function InputWithLabel(props) {
         id="todoTitle"
         name="title"
         type="text"
+        placeholder="new todo"
         value={props.todoTitle}
         onChange={props.handleTitleChange}
       ></input>
     </>
   );
 }
+InputWithLabel.propTypes = {
+  handleTitleChange: PropTypes.func,
+  todoTitle: PropTypes.object,
+  children: PropTypes.bool,
+};
 
 export default InputWithLabel;
 
