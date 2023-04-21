@@ -1,0 +1,60 @@
+.ListItem {
+    color: rgb(42, 6, 58);
+    list-style-type: none;
+    margin: 15px 0;
+    font-size: 1.25rem;
+}
+
+.app {
+    text-align: center;
+    margin: 20px;
+    border: 5px solid rgb(42, 6, 58);
+    border-radius: 10px;
+    max-width: fit-content;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.heading {
+    color: rgb(42, 6, 58);
+    font-size: 3.5rem;
+    font-weight: 500;
+    line-height: 40px;
+}
+
+
+form button {
+    background-color: rgb(70, 29, 69);
+    color: rgb(207, 192, 215);
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+input {
+    border-radius: 10px;
+    background-color: rgb(240, 218, 240);
+    margin: 0 10px 0 10px;
+    font-size: 1rem;
+}
+
+li button {
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    border-color: #4f0f4b;
+}
+
+@media screen and (max-width: 726px) {
+
+    .app {
+        margin: 0;
+        display: block;
+        max-width: 615px;
+    }
+
+    li button {
+        margin-left: 1;
+    }
+
+}
