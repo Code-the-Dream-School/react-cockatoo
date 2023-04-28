@@ -7,7 +7,6 @@
 
 .app {
     text-align: center;
-    margin: 20px;
     border: 5px solid rgb(42, 6, 58);
     border-radius: 10px;
     max-width: fit-content;
@@ -34,7 +33,6 @@ form button {
 input {
     border-radius: 10px;
     background-color: rgb(240, 218, 240);
-    margin: 0 10px 0 10px;
     font-size: 1rem;
 }
 
@@ -48,13 +46,12 @@ li button {
 @media screen and (max-width: 726px) {
 
     .app {
-        margin: 0;
         display: block;
         max-width: 615px;
     }
-
+/* 
     li button {
         margin-left: 1;
-    }
+    } */
 
 }
