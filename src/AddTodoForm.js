@@ -12,11 +12,13 @@ function AddTodoForm({ onAddTodo }) {
     setTodoTitle("")
   }
   return (
-    <form onSubmit={handleAddTodo}>
-      <InputWithLabel inputName="title" inputValue={todoTitle} handleTitleChange={handleTitleChange} id="todoTitle">
+    <form onSubmit={handleAddTodo} className="TodoForm">
+      <InputWithLabel inputName="title" inputValue={todoTitle} handleTitleChange={handleTitleChange} id="todoTitle" placeholder="New Todo Title">
         <strong>Title new</strong>
       </InputWithLabel>
-      <button type="submit">Add</button>
+      <button type="submit" className="btnAddTodo">
+        Add
+      </button>
     </form>
   )
 }
