@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react"
 import TodoList from "./TodoList"
 import AddTodoForm from "./AddTodoForm"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-
+import style from "./App.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 function App() {
   const initialTodolist = !JSON.parse(localStorage.getItem("savedTodoList")) ? [] : JSON.parse(localStorage.getItem("savedTodoList"))
   const [todoList, setTodoList] = useState([])
@@ -46,8 +48,16 @@ function App() {
           element={
             <>
               <h1>Todo List</h1>
-              <AddTodoForm onAddTodo={addTodo} />
-              {isLoading ? <p>Loading... </p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
+              <div className="TodoContainer">
+                <AddTodoForm onAddTodo={addTodo} />
+                {isLoading ? (
+                  <div className="PreLoadingContainer">
+                    <FontAwesomeIcon icon={faSpinner} spin /> <p>Loading... </p>
+                  </div>
+                ) : (
+                  <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+                )}
+              </div>
             </>
           }
         />
