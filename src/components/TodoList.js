@@ -1,11 +1,11 @@
 import React, { useEffect } from "react"
 import TodoListItem from "./TodoListItem"
-import style from "./TodoList.module.css"
+import PropTypes from "prop-types"
 
 function TodoList({ todoList, onRemoveTodo }) {
   return (
     <>
-      <ul className={style.TodoList}>
+      <ul>
         {todoList.map((todo) => (
           <TodoListItem todo={todo} key={todo.id} id={todo.id} onRemoveTodo={onRemoveTodo} />
         ))}
@@ -13,5 +13,8 @@ function TodoList({ todoList, onRemoveTodo }) {
     </>
   )
 }
-
+TodoList.propTypes = {
+  todoList: PropTypes.arrayOf(PropTypes.object),
+  onRemoveTodo: PropTypes.func,
+}
 export default TodoList
