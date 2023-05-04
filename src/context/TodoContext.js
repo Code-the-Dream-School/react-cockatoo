@@ -141,13 +141,14 @@ const TodoContextProvider = ({ children }) => {
 			);
 			console.log(sorted);
 		} else if (type === 'timeSort') {
+			console.log(todoList);
 			sorted = todoList.sort((a, b) => {
 				const dateA = new Date(`${a.date}`);
 				const dateB = new Date(`${b.date}`);
 				if (dateA.getTime() === dateB.getTime()) {
-					return 0; // dates are equal, so compare times
+					return 0;
 				}
-				return dateA.getTime() - dateB.getTime(); // compare dates first, then times
+				return dateA.getTime() - dateB.getTime();
 			});
 		}
 		if (sortOrder === 'desc') {
