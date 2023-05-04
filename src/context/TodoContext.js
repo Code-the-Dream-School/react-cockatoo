@@ -141,8 +141,15 @@ const TodoContextProvider = ({ children }) => {
 			sorted = todoList.sort((a, b) =>
 				a.title.toLowerCase().localeCompare(b.title)
 			);
+			console.log(sorted);
 		} else if (type === 'timeSort') {
-			sorted = todoList.sort((a, b) => a.time - b.time);
+			console.log(type);
+			sorted = todoList.sort((a, b) => {
+				const timeA = new Date(`2023-01-01T${a.time}`).getTime();
+				const timeB = new Date(`2023-01-01T${b.time}`).getTime();
+				return timeA - timeB;
+			});
+			console.log(sorted);
 		}
 		if (sortOrder === 'desc') {
 			sorted.reverse();
