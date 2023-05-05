@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import InputWithLabel from "./InputWithLabel"
 import PropTypes from "prop-types"
 function AddTodoForm({ onAddTodo }) {
@@ -9,8 +9,15 @@ function AddTodoForm({ onAddTodo }) {
   }
   function handleAddTodo(event) {
     event.preventDefault()
-    onAddTodo({ title: todoTitle, id: Date.now() })
+    // check if todo tile is not empty
+    if (todoTitle !== "") {
+      onAddTodo(todoTitle)
+    }
     setTodoTitle("")
+  }
+
+  function handleTitleChange(event) {
+    setTodoTitle(event.target.value)
   }
   return (
     <form onSubmit={handleAddTodo} className="TodoForm">
